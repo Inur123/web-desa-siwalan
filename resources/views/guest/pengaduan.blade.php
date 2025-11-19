@@ -2,7 +2,7 @@
 @section('title', 'Pengaduan - Desa Siwalan')
 
 @section('content')
- <main class="max-w-7xl mx-auto px-4 py-12">
+    <main class="max-w-7xl mx-auto px-4 py-12">
         <div class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900 mb-4">Kontak & Pengaduan</h1>
             <p class="text-lg text-gray-600">Hubungi kami dan sampaikan pengaduan atau masukan Anda</p>
@@ -36,66 +36,61 @@
             <div class="bg-white border border-gray-200 rounded-xl p-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Form Kontak & Pengaduan</h2>
 
-                <form class="space-y-6">
+                <!-- Menampilkan alert sukses -->
+                @if (session('success'))
+                    <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('pengaduan.store') }}" method="POST" enctype="multipart/form-data"
+                    class="space-y-6">
+                    @csrf
+
                     <div>
-                        <label class="block text-sm font-semibold text-gray-900 mb-2">Nama Lengkap *</label>
-                        <input type="text" placeholder="Masukkan nama lengkap Anda" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600">
+                        <label class="block text-sm font-semibold text-gray-900 mb-2">Subjek / Judul Pengaduan *</label>
+                        <input type="text" name="title" placeholder="Masukkan subjek pesan"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600"
+                            required>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-gray-900 mb-2">Email *</label>
-                        <input type="email" placeholder="Masukkan email Anda" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600">
+                        <label class="block text-sm font-semibold text-gray-900 mb-2">Pesan / Isi Pengaduan *</label>
+                        <textarea name="content" placeholder="Tuliskan pesan, pengaduan, atau masukan Anda..." rows="6"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600" required></textarea>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-900 mb-2">Nomor Telepon</label>
-                        <input type="tel" placeholder="Masukkan nomor telepon" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600">
-                    </div>
+                   <div>
+    <label class="block text-sm font-semibold text-gray-900 mb-2">Lampiran (opsional)</label>
+    <input type="file" name="foto"
+        accept=".jpg,.jpeg,.png"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600">
+    <p class="text-xs text-gray-600 mt-2">Format: JPG, PNG (Max 2MB)</p>
+</div>
 
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-900 mb-2">Jenis Pesan *</label>
-                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600">
-                            <option>Pilih Jenis Pesan</option>
-                            <option>Pengaduan</option>
-                            <option>Masukan</option>
-                            <option>Pertanyaan</option>
-                            <option>Laporan Infrastruktur</option>
-                            <option>Lainnya</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-900 mb-2">Subjek *</label>
-                        <input type="text" placeholder="Masukkan subjek pesan" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-900 mb-2">Pesan *</label>
-                        <textarea placeholder="Tuliskan pesan, pengaduan, atau masukan Anda..." rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600"></textarea>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-900 mb-2">Lampiran (opsional)</label>
-                        <input type="file" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600">
-                        <p class="text-xs text-gray-600 mt-2">Format: PDF, JPG, PNG (Max 5MB)</p>
-                    </div>
 
                     <div class="flex items-center gap-2">
-                        <input type="checkbox" id="agree" class="w-4 h-4 rounded border-gray-300">
-                        <label for="agree" class="text-sm text-gray-700">Saya setuju dengan kebijakan privasi dan syarat & ketentuan</label>
+                        <input type="checkbox" id="agree" class="w-4 h-4 rounded border-gray-300" required>
+                        <label for="agree" class="text-sm text-gray-700">Saya setuju dengan kebijakan privasi dan syarat
+                            & ketentuan</label>
                     </div>
 
-                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition">
-                        Kirim Pesan
+                    <button type="submit"
+                        class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition">
+                        Kirim Pengaduan
                     </button>
                 </form>
             </div>
+
 
             <!-- Map -->
             <div class="bg-white border border-gray-200 rounded-xl p-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Lokasi Kantor Desa</h2>
                 <div class="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center mb-6">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.7892321580634!2d111.32856!3d-7.62965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79f0e7f7f7f7f7%3A0x0!2sDesa%20Siwalan!5e0!3m2!1sid!2sid!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.7892321580634!2d111.32856!3d-7.62965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79f0e7f7f7f7f7%3A0x0!2sDesa%20Siwalan!5e0!3m2!1sid!2sid!4v1234567890"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
 
                 <!-- Office Hours -->

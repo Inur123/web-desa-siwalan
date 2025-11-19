@@ -68,7 +68,9 @@
     </div>
 
     <!-- Mobile overlay -->
-    <div id="sidebarOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 md:hidden z-40" onclick="toggleSidebar()"></div>
+
+
+
 
     <script>
 

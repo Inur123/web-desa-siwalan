@@ -11,6 +11,7 @@ use App\Http\Controllers\Guest\ProfileController;
 use App\Http\Controllers\Guest\PengaduanController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Warga\DashboardController as WargaDashboard;
+use App\Http\Controllers\Warga\PengaduanController as WargaPengaduan;
 
 
 
@@ -31,10 +32,17 @@ Route::middleware(['auth', 'role:admin'])
 Route::middleware(['auth', 'role:warga'])
     ->get('/warga/dashboard', [WargaDashboard::class, 'index'])
     ->name('warga.dashboard');
+     Route::get('/warga/pengaduan', [WargaPengaduan::class, 'index'])->name('warga.pengaduan');
+
 
 // Guest Routes
 Route::get('/', [HomeController::class, 'index'])->name('guest.home');
 Route::get('/profil', [ProfileController::class, 'index'])->name('guest.profile');
 Route::get('/layanan', [LayananController::class, 'index'])->name('guest.layanan');
-Route::get('/pengaduan', [PengaduanController::class, 'index'])->name('guest.pengaduan');
 Route::get('/berita', [BeritaController::class, 'index'])->name('guest.berita');
+
+// Pengaduan Routes
+Route::get('/pengaduan', [PengaduanController::class, 'index'])->name('guest.pengaduan');
+Route::post('/pengaduan/kirim', [PengaduanController::class, 'store'])
+    ->middleware('auth')
+    ->name('pengaduan.store');
