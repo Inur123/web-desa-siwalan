@@ -16,19 +16,31 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required'],
+            'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        // Cek login + remember jika checkbox 'remember' dicentang
+        $remember = $request->boolean('remember');
+
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            // Redirect berdasarkan role
+            $user = Auth::user();
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->role === 'warga') {
+                return redirect()->route('warga.dashboard');
+            } else {
+                // fallback general
+                return redirect()->intended('/');
+            }
         }
 
         return back()->withErrors([
             'email' => 'Email atau password salah.',
-        ]);
+        ])->onlyInput('email');
     }
 
     public function logout(Request $request)
@@ -38,6 +50,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect()->route('login');
     }
 }
