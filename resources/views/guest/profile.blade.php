@@ -123,7 +123,7 @@
         <div class="bg-white border border-gray-200 rounded-xl p-8 mb-12">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">Lokasi Desa Siwalan</h2>
             <div class="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.7892321580634!2d111.32856!3d-7.62965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79f0e7f7f7f7f7%3A0x0!2sDesa%20Siwalan!5e0!3m2!1sid!2sid!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.6592346924326!2d111.51846657500646!3d-7.930613692093172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e790af78ef4e9df%3A0xe95d424787bbe28!2sBalai%20Desa%20Siwalan!5e0!3m2!1sid!2sid!4v1763623006043!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </main>

@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Post;
 
 class BeritaController extends Controller
 {
-        public function index()
-        {
-            return view('guest.berita');
-        }
+    public function index()
+    {
+        // Ambil 12 berita terbaru per halaman
+        $posts = Post::latest()->paginate(12);
+        return view('guest.berita', compact('posts'));
+    }
+
+    public function show(Post $post)
+    {
+        return view('guest.detail-berita', compact('post'));
+    }
 }

@@ -27,4 +27,10 @@ class Pengaduan extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    // Agar route model binding otomatis pakai uuid
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 }
