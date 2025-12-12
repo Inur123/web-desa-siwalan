@@ -11,20 +11,20 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             <!-- Contact Cards -->
             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                <div class="text-4xl mb-4">📍</div>
+                <div class="text-4xl mb-4 text-red-600"><i class="fas fa-map-marker-alt"></i></div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Alamat</h3>
                 <p class="text-gray-700">Jl. Utama Desa Siwalan, Kecamatan Magetan, Provinsi Jawa Timur, 63314</p>
             </div>
 
             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                <div class="text-4xl mb-4">📧</div>
+                <div class="text-4xl mb-4 text-blue-600"><i class="fas fa-envelope"></i></div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Email</h3>
                 <p class="text-gray-700">desa.siwalan@mail.com</p>
                 <p class="text-gray-700 text-sm mt-1">Respon: Maksimal 1x24 jam</p>
             </div>
 
             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                <div class="text-4xl mb-4">📞</div>
+                <div class="text-4xl mb-4 text-green-600"><i class="fas fa-phone"></i></div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Telepon</h3>
                 <p class="text-gray-700">(0351) 123-4567</p>
                 <p class="text-gray-700 text-sm mt-1">Senin - Jumat: 08:00 - 16:00 WIB</p>

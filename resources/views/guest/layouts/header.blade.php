@@ -45,13 +45,15 @@
 
 <header class="sticky top-0 z-50 bg-white shadow-md">
     <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="/" class="flex items-center gap-2">
-            <div
-                class="w-10 h-10 bg-gradient-to-br from-green-600 to-green-800 rounded-lg flex items-center justify-center">
-                <span class="text-white font-bold text-lg">D</span>
-            </div>
-            <span class="font-bold text-xl text-gray-900">Desa Siwalan</span>
-        </a>
+       <a href="/" class="flex items-center gap-2">
+    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white shadow flex items-center justify-center">
+        <img src="{{ asset('images/logo-desa.png') }}"
+             alt="Logo Desa Siwalan"
+             class="object-cover w-full h-full">
+    </div>
+    <span class="font-bold text-xl text-gray-900">Desa Siwalan</span>
+</a>
+
 
         {{-- DESKTOP MENU --}}
         <div class="hidden md:flex gap-8">
@@ -66,19 +68,6 @@
             <a href="/berita"
                 class="font-medium transition {{ request()->is('berita*') ? 'text-green-600 font-semibold' : 'text-gray-700 hover:text-green-600' }}">Berita</a>
         </div>
-
-        {{-- LOGIN / DASHBOARD BUTTON --}}
-        @if (Auth::check())
-            <a href="{{ route('admin.dashboard') }}"
-                class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-medium hidden md:block">
-                Dashboard
-            </a>
-        @else
-            <a href="{{ route('login') }}"
-                class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-medium hidden md:block">
-                Login
-            </a>
-        @endif
 
         <button class="md:hidden text-gray-700" id="menuBtn">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

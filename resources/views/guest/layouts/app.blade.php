@@ -7,6 +7,7 @@
     <title>@yield('title', 'Desa Siwalan - Website Resmi')</title>
     @vite('resources/css/app.css')
       <link rel="icon" type="image/png" href="{{ asset('images/logo-desa.png') }}">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body class="bg-white text-gray-800 font-sans">
@@ -18,8 +19,10 @@
     @include('guest.layouts.footer')
 
     <button id="scrollTopBtn"
-        class="fixed bottom-6 right-6 bg-green-600 text-white p-3 rounded-full shadow-lg hover:bg-green-700 transition opacity-0 pointer-events-none"
-        title="Scroll to top">↑</button>
+        class="fixed bottom-6 right-6 w-12 h-12 bg-green-600 text-white rounded-full shadow-lg hover:bg-green-700 transition opacity-0 pointer-events-none flex items-center justify-center"
+        title="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script>
         // Scroll to top

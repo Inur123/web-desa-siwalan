@@ -16,11 +16,18 @@
 
             <div class="bg-white rounded-lg shadow-lg p-8">
 
-                <div class="text-center mb-8">
-                    <div class="text-5xl mb-3">🏘️</div>
-                    <h1 class="text-2xl font-bold text-gray-800">Desa Siwalan</h1>
-                    <p class="text-gray-600 mt-1">Portal Admin</p>
-                </div>
+               <div class="text-center mb-8">
+
+    <!-- Logo Desa -->
+    <div class="mx-auto mb-3 w-20 h-20  overflow-hidden flex items-center justify-center">
+        <img src="{{ asset('images/logo-desa.png') }}"
+             alt="Logo Desa Siwalan"
+             class="object-cover w-full h-full">
+    </div>
+
+    <h1 class="text-2xl font-bold text-gray-800">Desa Siwalan</h1>
+    <p class="text-gray-600 mt-1">Portal Admin</p>
+</div>
 
                 <!-- Error Message -->
                 @if ($errors->any())

@@ -342,28 +342,28 @@
 
                 <a href="layanan.html"
                     class="card-hover bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">📄</div>
+                    <div class="text-4xl mb-4 text-blue-600"><i class="fas fa-file-alt"></i></div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Pengajuan Surat</h3>
                     <p class="text-gray-600">Ajukan surat keterangan, izin, dan dokumen resmi desa secara online</p>
                 </a>
 
                 <a href="layanan.html"
                     class="card-hover bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">🆔</div>
+                    <div class="text-4xl mb-4 text-purple-600"><i class="fas fa-id-card"></i></div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">SKTM & Administrasi</h3>
                     <p class="text-gray-600">Proses cepat untuk surat keterangan tak mampu dan layanan administrasi</p>
                 </a>
 
                 <a href="layanan.html"
                     class="card-hover bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">🗣️</div>
+                    <div class="text-4xl mb-4 text-yellow-600"><i class="fas fa-comments"></i></div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Pengaduan & Masukan</h3>
                     <p class="text-gray-600">Sampaikan keluhan atau saran untuk perbaikan pelayanan desa</p>
                 </a>
 
                 <a href="layanan.html"
                     class="card-hover bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition">
-                    <div class="text-4xl mb-4">ℹ️</div>
+                    <div class="text-4xl mb-4 text-cyan-600"><i class="fas fa-info-circle"></i></div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Informasi Lainnya</h3>
                     <p class="text-gray-600">Akses berbagai informasi penting tentang program dan kegiatan desa</p>
                 </a>

@@ -30,18 +30,39 @@
                 </article>
 
                 <!-- Share Section -->
-                <div class="bg-gray-50 rounded-xl p-6 mb-12">
-                    <h3 class="font-bold text-gray-900 mb-4">Bagikan Berita Ini</h3>
-                    <div class="flex gap-4 flex-wrap">
+                <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-6 mb-12 border border-green-100">
+                    <div class="flex items-center gap-2 mb-6">
+                        <i class="fas fa-share-alt text-green-600 text-xl"></i>
+                        <h3 class="font-bold text-gray-900">Bagikan Berita Ini</h3>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <!-- Facebook -->
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" target="_blank"
-                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">Facebook</a>
+                            class="group bg-white hover:bg-blue-600 border border-gray-200 hover:border-blue-600 rounded-lg p-4 flex flex-col items-center gap-2 transition-all duration-300 shadow-sm hover:shadow-md">
+                            <i class="fab fa-facebook text-2xl text-blue-600 group-hover:text-white transition"></i>
+                            <span class="text-sm font-semibold text-gray-700 group-hover:text-white transition">Facebook</span>
+                        </a>
+
+                        <!-- Twitter -->
                         <a href="https://twitter.com/intent/tweet?url={{ url()->current() }}" target="_blank"
-                            class="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition">Twitter</a>
+                            class="group bg-white hover:bg-sky-500 border border-gray-200 hover:border-sky-500 rounded-lg p-4 flex flex-col items-center gap-2 transition-all duration-300 shadow-sm hover:shadow-md">
+                            <i class="fab fa-twitter text-2xl text-sky-500 group-hover:text-white transition"></i>
+                            <span class="text-sm font-semibold text-gray-700 group-hover:text-white transition">Twitter</span>
+                        </a>
+
+                        <!-- WhatsApp -->
                         <a href="https://api.whatsapp.com/send?text={{ url()->current() }}" target="_blank"
-                            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition">WhatsApp</a>
-                        <button onclick="navigator.clipboard.writeText('{{ url()->current() }}')"
-                            class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition">Salin
-                            Link</button>
+                            class="group bg-white hover:bg-green-600 border border-gray-200 hover:border-green-600 rounded-lg p-4 flex flex-col items-center gap-2 transition-all duration-300 shadow-sm hover:shadow-md">
+                            <i class="fab fa-whatsapp text-2xl text-green-600 group-hover:text-white transition"></i>
+                            <span class="text-sm font-semibold text-gray-700 group-hover:text-white transition">WhatsApp</span>
+                        </a>
+
+                        <!-- Copy Link -->
+                        <button onclick="navigator.clipboard.writeText('{{ url()->current() }}'); this.querySelector('.copy-text').textContent = 'Tersalin!'; setTimeout(() => this.querySelector('.copy-text').textContent = 'Salin Link', 2000)"
+                            class="group bg-white hover:bg-gray-700 border border-gray-200 hover:border-gray-700 rounded-lg p-4 flex flex-col items-center gap-2 transition-all duration-300 shadow-sm hover:shadow-md">
+                            <i class="fas fa-link text-2xl text-gray-600 group-hover:text-white transition"></i>
+                            <span class="copy-text text-sm font-semibold text-gray-700 group-hover:text-white transition">Salin Link</span>
+                        </button>
                     </div>
                 </div>
             </div>
