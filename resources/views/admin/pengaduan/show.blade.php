@@ -23,10 +23,23 @@
     </div>
 
     <!-- Detail Pengaduan -->
-    <div class="mb-4">
-        <p class="text-gray-700"><strong>Pengirim:</strong> {{ $pengaduan->user->name ?? '-' }}</p>
-        <p class="text-gray-700"><strong>Email:</strong> {{ $pengaduan->user->email ?? '-' }}</p>
-        <p class="text-gray-700"><strong>Tanggal:</strong> {{ \Carbon\Carbon::parse($pengaduan->tanggal)->format('d-m-Y') }}</p>
+    <div class="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
+        <div>
+            <p class="text-sm text-gray-600">Nama Pelapor</p>
+            <p class="text-gray-800 font-medium">{{ $pengaduan->nama }}</p>
+        </div>
+        <div>
+            <p class="text-sm text-gray-600">No. HP</p>
+            <p class="text-gray-800 font-medium">{{ $pengaduan->no_hp }}</p>
+        </div>
+        <div class="md:col-span-2">
+            <p class="text-sm text-gray-600">Alamat</p>
+            <p class="text-gray-800 font-medium">{{ $pengaduan->alamat }}</p>
+        </div>
+        <div>
+            <p class="text-sm text-gray-600">Tanggal Pengaduan</p>
+            <p class="text-gray-800 font-medium">{{ \Carbon\Carbon::parse($pengaduan->tanggal)->format('d-m-Y H:i') }}</p>
+        </div>
     </div>
 
     <div class="mb-4">

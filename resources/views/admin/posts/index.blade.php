@@ -5,28 +5,29 @@
     <div class="max-w-7xl mx-auto">
 
         <!-- Header + Tambah Berita -->
-        <div class="flex justify-between items-center mb-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
             <div>
-                <h1 class="text-3xl font-bold">Daftar Berita Desa</h1>
-                <p class="text-gray-600 text-sm">Lihat, edit, atau hapus berita desa yang telah dibuat</p>
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">Kelola Berita</h1>
+                <p class="text-gray-600">Lihat, edit, atau hapus berita desa</p>
             </div>
             <a href="{{ route('posts.create') }}"
-                class="bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition">
-                Tambah Berita
+                class="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-green-500/50 hover:shadow-xl hover:-translate-y-0.5">
+                <i class="fas fa-plus"></i>
+                <span>Tambah Berita</span>
             </a>
         </div>
 
         <!-- Posts Table -->
-        <div class="bg-white rounded-lg shadow overflow-x-auto">
-            <table class="min-w-full bg-white divide-y divide-gray-200">
-                <thead class="bg-gray-100 border-b border-gray-200">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
                     <tr>
-                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-800">No</th>
-                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-800">Judul</th>
-                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-800">Kategori</th>
-                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-800">Tanggal</th>
-                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-800">Thumbnail</th>
-                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-800">Aksi</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">No</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Judul</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Kategori</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tanggal</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Thumbnail</th>
+                        <th class="px-6 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -55,20 +56,23 @@
                             <td class="px-6 py-4">
     <div class="flex justify-center items-center gap-2">
         <a href="{{ route('posts.show', $post->slug) }}"
-           class="bg-gray-600 text-white px-3 py-1 rounded hover:bg-gray-700 transition text-sm">
-            Lihat
+           class="inline-flex items-center gap-1 bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded-lg transition-all duration-200 text-xs font-medium shadow-sm hover:shadow-md">
+            <i class="fas fa-eye"></i>
+            <span>Lihat</span>
         </a>
         <a href="{{ route('posts.edit', $post->slug) }}"
-           class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition text-sm">
-            Edit
+           class="inline-flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-all duration-200 text-xs font-medium shadow-sm hover:shadow-md">
+            <i class="fas fa-edit"></i>
+            <span>Edit</span>
         </a>
         <form action="{{ route('posts.destroy', $post->slug) }}" method="POST"
               onsubmit="return confirm('Hapus berita ini?')">
             @csrf
             @method('DELETE')
             <button type="submit"
-                    class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition text-sm">
-                Hapus
+                    class="inline-flex items-center gap-1 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition-all duration-200 text-xs font-medium shadow-sm hover:shadow-md">
+                <i class="fas fa-trash"></i>
+                <span>Hapus</span>
             </button>
         </form>
     </div>

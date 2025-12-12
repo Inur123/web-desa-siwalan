@@ -7,6 +7,7 @@
     <title>Register - Admin Desa Siwalan</title>
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <link rel="icon" type="image/png" href="{{ asset('images/logo-desa.png') }}">
 </head>
 
 <body class="bg-gradient-to-br from-green-50 to-blue-50">
@@ -19,7 +20,7 @@
                 <div class="text-center mb-8">
                     <div class="text-5xl mb-3">🏘️</div>
                     <h1 class="text-2xl font-bold text-gray-800">Desa Siwalan</h1>
-                    <p class="text-gray-600 mt-1">Buat Akun Admin/Warga</p>
+                    <p class="text-gray-600 mt-1">Buat Akun Admin</p>
                 </div>
 
                 <!-- ERROR ALERT -->
@@ -50,22 +51,6 @@
                         <input type="text" name="name" value="{{ old('name') }}" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                             placeholder="Nama Anda">
-                    </div>
-
-                    <!-- NIK -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">NIK</label>
-                        <input type="text" name="nik" value="{{ old('nik') }}" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                            placeholder="35xxxxxxxxxxxxxx">
-                    </div>
-
-                    <!-- NO HP -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Nomor HP (Opsional)</label>
-                        <input type="text" name="nohp" value="{{ old('nohp') }}"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                            placeholder="08xxxxxxxxxx">
                     </div>
 
                     <!-- Email -->

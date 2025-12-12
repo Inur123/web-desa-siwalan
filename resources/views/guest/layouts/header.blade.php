@@ -69,7 +69,7 @@
 
         {{-- LOGIN / DASHBOARD BUTTON --}}
         @if (Auth::check())
-            <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : route('warga.dashboard') }}"
+            <a href="{{ route('admin.dashboard') }}"
                 class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-medium hidden md:block">
                 Dashboard
             </a>
@@ -130,7 +130,7 @@
                 Berita
             </a>
             @if (Auth::check())
-        <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : route('warga.dashboard') }}"
+        <a href="{{ route('admin.dashboard') }}"
             class="block w-full text-center bg-green-600 text-white font-semibold rounded-lg py-3 mt-4 hover:bg-green-700 transition">
             Dashboard
         </a>

@@ -11,7 +11,7 @@ class PengaduanController extends Controller
     // Tampilkan semua pengaduan
 public function index()
 {
-    $pengaduan = Pengaduan::with('user')->latest()->paginate(10);
+    $pengaduan = Pengaduan::latest()->paginate(10);
     return view('admin.pengaduan.index', compact('pengaduan'));
 }
 

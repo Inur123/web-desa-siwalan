@@ -1,45 +1,58 @@
  @extends('admin.layouts.app')
 
  @section('content')
-     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
-         <div class="bg-white rounded-lg shadow p-4 md:p-6">
-             <div class="flex items-center justify-between">
-                 <div>
-                     <p class="text-gray-600 text-sm">Total Berita</p>
-                     <p class="text-2xl md:text-3xl font-bold text-gray-800 mt-2">24</p>
+     <div class="mb-8">
+         <h1 class="text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
+         <p class="text-gray-600">Selamat datang di panel admin Desa Siwalan</p>
+     </div>
+
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+         <!-- Card 1 -->
+         <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-white transform hover:-translate-y-1">
+             <div class="flex items-center justify-between mb-4">
+                 <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                     <i class="fas fa-newspaper text-2xl"></i>
                  </div>
-                 <div class="text-3xl md:text-4xl"><i class="fas fa-newspaper text-blue-500"></i></div>
+                 <span class="text-xs bg-white/20 px-3 py-1 rounded-full">Total</span>
              </div>
+             <p class="text-sm font-medium opacity-90 mb-1">Total Berita</p>
+             <p class="text-4xl font-bold">24</p>
          </div>
 
-         <div class="bg-white rounded-lg shadow p-4 md:p-6">
-             <div class="flex items-center justify-between">
-                 <div>
-                     <p class="text-gray-600 text-sm">Kategori</p>
-                     <p class="text-2xl md:text-3xl font-bold text-gray-800 mt-2">8</p>
+         <!-- Card 2 -->
+         <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-white transform hover:-translate-y-1">
+             <div class="flex items-center justify-between mb-4">
+                 <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                     <i class="fas fa-tag text-2xl"></i>
                  </div>
-                 <div class="text-3xl md:text-4xl"><i class="fas fa-tag text-purple-500"></i></div>
+                 <span class="text-xs bg-white/20 px-3 py-1 rounded-full">Aktif</span>
              </div>
+             <p class="text-sm font-medium opacity-90 mb-1">Kategori</p>
+             <p class="text-4xl font-bold">8</p>
          </div>
 
-         <div class="bg-white rounded-lg shadow p-4 md:p-6">
-             <div class="flex items-center justify-between">
-                 <div>
-                     <p class="text-gray-600 text-sm">Pengajuan Layanan</p>
-                     <p class="text-2xl md:text-3xl font-bold text-yellow-600 mt-2">5</p>
+         <!-- Card 3 -->
+         <div class="bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-white transform hover:-translate-y-1">
+             <div class="flex items-center justify-between mb-4">
+                 <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                     <i class="fas fa-file-certificate text-2xl"></i>
                  </div>
-                 <div class="text-3xl md:text-4xl"><i class="fas fa-list text-yellow-500"></i></div>
+                 <span class="text-xs bg-white/20 px-3 py-1 rounded-full">Pending</span>
              </div>
+             <p class="text-sm font-medium opacity-90 mb-1">Pengajuan SKTM</p>
+             <p class="text-4xl font-bold">5</p>
          </div>
 
-         <div class="bg-white rounded-lg shadow p-4 md:p-6">
-             <div class="flex items-center justify-between">
-                 <div>
-                     <p class="text-gray-600 text-sm">Pengaduan Baru</p>
-                     <p class="text-2xl md:text-3xl font-bold text-red-600 mt-2">3</p>
+         <!-- Card 4 -->
+         <div class="bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-white transform hover:-translate-y-1">
+             <div class="flex items-center justify-between mb-4">
+                 <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                     <i class="fas fa-envelope text-2xl"></i>
                  </div>
-                 <div class="text-3xl md:text-4xl"><i class="fas fa-exclamation-triangle text-red-500"></i></div>
+                 <span class="text-xs bg-white/20 px-3 py-1 rounded-full">Baru</span>
              </div>
+             <p class="text-sm font-medium opacity-90 mb-1">Pengaduan</p>
+             <p class="text-4xl font-bold">3</p>
          </div>
      </div>
 

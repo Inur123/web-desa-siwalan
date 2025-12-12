@@ -2,7 +2,7 @@
 @section('title', 'Layanan - Desa Siwalan')
 
 @section('content')
-  <main class="max-w-7xl mx-auto px-4 py-12">
+    <main class="max-w-7xl mx-auto px-4 py-12">
         <div class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900 mb-4">Layanan Desa Siwalan</h1>
             <p class="text-lg text-gray-600">Layanan terpadu untuk kemudahan warga dalam mengakses administrasi desa</p>
@@ -26,7 +26,7 @@
             </a>
 
             <!-- Service 2: SKTM & Administrasi -->
-            <a href="detail-layanan.html?id=2" class="service-card bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-lg">
+            <a href="{{ route('guest.sktm') }}" class="service-card bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-lg">
                 <div class="text-5xl mb-4">🆔</div>
                 <h3 class="text-2xl font-bold text-gray-900 mb-3">SKTM & Administrasi</h3>
                 <p class="text-gray-600 mb-6">Proses cepat untuk surat keterangan tak mampu dan berbagai layanan administrasi kependudukan lainnya.</p>

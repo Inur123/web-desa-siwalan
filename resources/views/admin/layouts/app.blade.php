@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Admin Desa Siwalan</title>
-      @vite('resources/css/app.css')
+    @vite('resources/css/app.css')
     <!-- Added Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo-desa.png') }}">
     <style>
         body {
             margin: 0;
@@ -18,10 +20,19 @@
             transition: transform 0.3s ease-in-out;
         }
 
-        /* Desktop: sidebar visible */
+        /* Desktop: sidebar visible and fixed */
         @media (min-width: 769px) {
             #sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100vh;
                 transform: translateX(0);
+                z-index: 40;
+            }
+
+            #mainContent {
+                margin-left: 16rem; /* w-64 = 16rem */
             }
         }
 
@@ -47,32 +58,32 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100">
     <!-- Main container: sidebar + content -->
     <div class="flex min-h-screen">
         <!-- Sidebar -->
-          @include('admin.layouts.sidebar')
+        @include('admin.layouts.sidebar')
 
         <!-- Main content area -->
         <div id="mainContent" class="flex-1 flex flex-col w-full">
             <!-- Top Bar -->
 
-             @include('admin.layouts.header')
+            @include('admin.layouts.header')
             <!-- Content -->
             <main class="p-4 md:p-8 flex-1">
                 <!-- Stats Cards -->
-                 @yield('content')
+                @yield('content')
 
             </main>
         </div>
     </div>
 
     <!-- Mobile overlay -->
-    <div id="sidebarOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 md:hidden z-40" onclick="toggleSidebar()"></div>
+    <div id="sidebarOverlay" class="hidden fixed inset-0 backdrop-blur-sm bg-white/30 md:hidden z-40"
+        onclick="toggleSidebar()"></div>
 
     <script>
-
-
         function toggleDropdown() {
             const dropdown = document.getElementById('userDropdown');
             const arrow = document.getElementById('dropdownArrow');
@@ -119,6 +130,21 @@
                 }
             });
         });
+
+        function toggleLayananDropdown() {
+            const submenu = document.getElementById('layananSubmenu');
+            const arrow = document.getElementById('layananArrow');
+
+            submenu.classList.toggle('hidden');
+
+            // Rotate arrow
+            if (submenu.classList.contains('hidden')) {
+                arrow.classList.remove('rotate-180');
+            } else {
+                arrow.classList.add('rotate-180');
+            }
+        }
     </script>
 </body>
+
 </html>

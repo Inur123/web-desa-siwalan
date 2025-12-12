@@ -18,7 +18,7 @@
 <header class="bg-white shadow sticky top-0 z-40">
     <div class="px-4 md:px-8 py-4 flex justify-between items-center">
         <div class="flex items-center gap-4">
-            <button onclick="toggleSidebar()" class="md:hidden bg-gray-900 text-white p-2 rounded-lg z-50">
+            <button onclick="toggleSidebar()" class="md:hidden  text-black text-2xl p-2 rounded-lg z-50">
                 <i class="fas fa-bars"></i>
             </button>
 

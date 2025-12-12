@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('pengaduans', function (Blueprint $table) {
             $table->uuid('uuid')->primary(); // ID pengaduan sendiri
-            $table->uuid('user_id'); // UUID user pengirim
-            $table->string('title');
-            $table->text('content');
+            $table->text('nama'); // Changed to TEXT for encryption
+            $table->text('no_hp'); // Changed to TEXT for encryption
+            $table->longText('alamat'); // Changed to LONGTEXT for encryption
+            $table->text('title'); // Changed to TEXT for encryption
+            $table->longText('content'); // Changed to LONGTEXT for encryption
             $table->dateTime('tanggal');
-            $table->string('foto')->nullable();
+            $table->text('foto')->nullable(); // Changed to TEXT for encryption
             $table->timestamps();
-
-            // Relasi ke users
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

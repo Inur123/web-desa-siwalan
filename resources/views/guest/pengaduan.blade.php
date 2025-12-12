@@ -38,8 +38,19 @@
 
                 <!-- Menampilkan alert sukses -->
                 @if (session('success'))
-                    <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                    <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-800 rounded-lg">
                         {{ session('success') }}
+                    </div>
+                @endif
+
+                <!-- Menampilkan alert error -->
+                @if ($errors->any())
+                    <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-800 rounded-lg">
+                        <ul class="list-disc ml-5 space-y-1">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 @endif
 
@@ -48,16 +59,53 @@
                     @csrf
 
                     <div>
+                        <label class="block text-sm font-semibold text-gray-900 mb-2">Nama Lengkap *</label>
+                        <input type="text" name="nama" value="{{ old('nama') }}" placeholder="Masukkan nama lengkap"
+                            class="w-full px-4 py-3 border @error('nama') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:border-green-600"
+                            required minlength="3" maxlength="255">
+                        @error('nama')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-900 mb-2">Nomor HP *</label>
+                        <input type="tel" name="no_hp" value="{{ old('no_hp') }}" placeholder="Contoh: 08123456789"
+                            class="w-full px-4 py-3 border @error('no_hp') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:border-green-600"
+                            required minlength="10" maxlength="15" pattern="[0-9]+">
+                        @error('no_hp')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-900 mb-2">Alamat *</label>
+                        <textarea name="alamat" placeholder="Masukkan alamat lengkap" rows="2"
+                            class="w-full px-4 py-3 border @error('alamat') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:border-green-600"
+                            required minlength="10" maxlength="500">{{ old('alamat') }}</textarea>
+                        @error('alamat')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
                         <label class="block text-sm font-semibold text-gray-900 mb-2">Subjek / Judul Pengaduan *</label>
-                        <input type="text" name="title" placeholder="Masukkan subjek pesan"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600"
-                            required>
+                        <input type="text" name="title" value="{{ old('title') }}" placeholder="Masukkan subjek pesan"
+                            class="w-full px-4 py-3 border @error('title') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:border-green-600"
+                            required minlength="5" maxlength="255">
+                        @error('title')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-900 mb-2">Pesan / Isi Pengaduan *</label>
                         <textarea name="content" placeholder="Tuliskan pesan, pengaduan, atau masukan Anda..." rows="6"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600" required></textarea>
+                            class="w-full px-4 py-3 border @error('content') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:border-green-600"
+                            required minlength="10" maxlength="2000">{{ old('content') }}</textarea>
+                        @error('content')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>

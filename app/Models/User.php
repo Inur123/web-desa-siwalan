@@ -20,8 +20,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'nik',
-        'nohp',
         'email',
         'password',
         'role',
@@ -48,11 +46,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    // Relasi ke pengaduan
-    public function pengaduans()
-    {
-        return $this->hasMany(Pengaduan::class, 'user_id');
     }
 }

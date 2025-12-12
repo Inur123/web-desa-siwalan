@@ -17,13 +17,11 @@ return new class extends Migration
 
             // Data user
             $table->string('name');
-            $table->string('nik')->unique();
-            $table->string('nohp')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
 
-            // Role: admin / warga (default: warga)
-            $table->enum('role', ['admin', 'warga'])->default('warga');
+            // Role: admin only
+            $table->enum('role', ['admin'])->default('admin');
 
             // Auth
             $table->string('password');
