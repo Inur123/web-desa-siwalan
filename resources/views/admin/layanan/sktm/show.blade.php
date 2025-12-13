@@ -133,7 +133,6 @@
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Ubah Status</label>
                     <select name="status" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500">
-                        <option value="baru" {{ $sktm->status === 'baru' ? 'selected' : '' }}>Baru</option>
                         <option value="diterima" {{ $sktm->status === 'diterima' ? 'selected' : '' }}>Diterima</option>
                         <option value="ditolak" {{ $sktm->status === 'ditolak' ? 'selected' : '' }}>Ditolak</option>
                     </select>

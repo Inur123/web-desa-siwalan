@@ -147,4 +147,5 @@
     </script>
 </body>
 
+    <script src="{{ asset('js/sidebar-dropdown.js') }}"></script>
 </html>

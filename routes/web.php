@@ -10,14 +10,16 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Guest\LayananController;
 use App\Http\Controllers\Guest\ProfileController;
 use App\Http\Controllers\Guest\PengaduanController;
-use App\Http\Controllers\Guest\Layanan\SktmController as GuestSktmController;
+use App\Http\Controllers\Admin\Settings\FontteController;
+use App\Http\Controllers\Admin\Settings\TemplateSuratController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
-use App\Http\Controllers\Admin\PengaduanController as AdminPengaduanController;
 use App\Http\Controllers\Admin\Layanan\SktmController as AdminSktmController;
+use App\Http\Controllers\Guest\Layanan\SktmController as GuestSktmController;
+use App\Http\Controllers\Admin\PengaduanController as AdminPengaduanController;
 
 // Authentication Routes
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+// Route::get('/register', [RegisterController::class, 'index'])->name('register');
+// Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.store');
@@ -40,8 +42,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
     // Admin Settings Routes
-    Route::get('/admin/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('admin.settings.index');
-    Route::put('/admin/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('admin.settings.update');
+    Route::prefix('admin/settings')->name('admin.settings.')->group(function () {
+        // Template Surat
+        Route::get('/template-surat', [TemplateSuratController::class, 'index'])->name('template-surat.index');
+        Route::put('/template-surat', [TemplateSuratController::class, 'update'])->name('template-surat.update');
+
+        // Fonnte WhatsApp
+        Route::get('/fonnte', [FontteController::class, 'index'])->name('fonnte.index');
+        Route::put('/fonnte', [FontteController::class, 'update'])->name('fonnte.update');
+    });
 });
 
 // Removed warga routes - only admin role exists now

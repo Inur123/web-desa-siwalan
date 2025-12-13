@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Guest\Layanan;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Sktm;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Services\FontteService;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
 class SktmController extends Controller
 {
@@ -92,8 +94,82 @@ class SktmController extends Controller
             'pengantar_rt' => $validated['pengantar_rt'] ?? null,
         ];
 
-        Sktm::create($dataToCreate);
+        $sktm = Sktm::create($dataToCreate);
 
-        return redirect()->back()->with('success', 'Pengajuan SKTM berhasil dikirim!');
+        // Kirim notifikasi WhatsApp
+        $this->sendWhatsAppNotification($sktm);
+
+        return redirect()->back()->with('success', 'Pengajuan SKTM berhasil dikirim! Notifikasi telah dikirim ke WhatsApp Anda.');
+    }
+
+    /**
+     * Kirim notifikasi WhatsApp ke pemohon dan admin
+     */
+    private function sendWhatsAppNotification($sktm)
+    {
+        try {
+            $fontte = new FontteService();
+
+            // Kirim ke pemohon
+            $fontte->sendMessage($sktm->no_hp, $this->buildPesanUser($sktm));
+
+            // Kirim ke admin
+            $fontte->sendToAdmin($this->buildPesanAdmin($sktm));
+        } catch (\Exception $e) {
+            Log::error('Gagal mengirim notifikasi WhatsApp: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Buat pesan WhatsApp untuk pemohon
+     */
+    private function buildPesanUser($sktm)
+    {
+        $pesan = "🔔 *NOTIFIKASI PENGAJUAN SKTM*\n\n";
+        $pesan .= "Yth. Bapak/Ibu *{$sktm->nama}*,\n\n";
+        $pesan .= "Pengajuan SKTM Anda telah *BERHASIL DITERIMA* oleh sistem.\n\n";
+        $pesan .= "📋 *Detail Pengajuan:*\n";
+        $pesan .= "• Nama: {$sktm->nama}\n";
+        $pesan .= "• NIK: {$sktm->nik}\n";
+        $pesan .= "• Keperluan: {$sktm->keperluan}\n";
+
+        if ($sktm->nama_anak) {
+            $pesan .= "• Nama Anak: {$sktm->nama_anak}\n";
+        }
+
+        $pesan .= "• Tanggal Pengajuan: " . now()->format('d/m/Y H:i') . "\n";
+        $pesan .= "• Status: *Menunggu Verifikasi*\n\n";
+        $pesan .= "⏳ Pengajuan Anda akan segera diproses oleh petugas desa.\n\n";
+        $pesan .= "Terima kasih telah menggunakan layanan Desa Siwalan.\n\n";
+        $pesan .= "_Pesan ini dikirim otomatis, mohon tidak membalas._";
+
+        return $pesan;
+    }
+
+    /**
+     * Buat pesan WhatsApp untuk admin
+     */
+    private function buildPesanAdmin($sktm)
+    {
+        $pesan = "🚨 *PENGAJUAN SKTM BARU*\n\n";
+        $pesan .= "Ada pengajuan SKTM baru dari warga yang perlu segera ditindaklanjuti.\n\n";
+        $pesan .= "👤 *Data Pemohon:*\n";
+        $pesan .= "• Nama: {$sktm->nama}\n";
+        $pesan .= "• NIK: {$sktm->nik}\n";
+        $pesan .= "• No. HP: {$sktm->no_hp}\n";
+        $pesan .= "• Tempat/Tgl Lahir: {$sktm->tempat_lahir}, " . date('d/m/Y', strtotime($sktm->ttl)) . "\n";
+        $pesan .= "• Alamat: {$sktm->alamat}\n";
+        $pesan .= "• Status Perkawinan: {$sktm->status_perkawinan}\n";
+
+        if ($sktm->nama_anak) {
+            $pesan .= "• Nama Anak: {$sktm->nama_anak}\n";
+        }
+
+        $pesan .= "• Keperluan: {$sktm->keperluan}\n";
+        $pesan .= "• Waktu Pengajuan: " . now()->format('d/m/Y H:i') . " WIB\n\n";
+        $pesan .= "📌 Silakan login ke dashboard admin untuk memverifikasi dan memproses pengajuan ini.\n\n";
+        $pesan .= "_Pesan otomatis dari Sistem Desa Siwalan_";
+
+        return $pesan;
     }
 }

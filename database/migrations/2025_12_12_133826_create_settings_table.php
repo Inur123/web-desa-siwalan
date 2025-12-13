@@ -69,6 +69,18 @@ return new class extends Migration
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'key' => 'fonnte_token',
+                'value' => '',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'key' => 'fontte_admin_phone',
+                'value' => '',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 

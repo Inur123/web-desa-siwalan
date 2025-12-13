@@ -3,7 +3,9 @@
 
 @section('content')
     <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-bold mb-6">Pengaturan Template Surat</h1>
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold">Pengaturan Template Surat</h1>
+        </div>
 
         @if (session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
@@ -12,7 +14,7 @@
         @endif
 
         <div class="bg-white rounded-lg shadow p-6">
-            <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.settings.template-surat.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 

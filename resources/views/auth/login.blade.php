@@ -7,7 +7,7 @@
     <title>Login - Admin Desa Siwalan</title>
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-      <link rel="icon" type="image/png" href="{{ asset('images/logo-desa.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo-desa.png') }}">
 </head>
 
 <body class="bg-gradient-to-br from-green-50 to-blue-50">
@@ -16,18 +16,17 @@
 
             <div class="bg-white rounded-lg shadow-lg p-8">
 
-               <div class="text-center mb-8">
+                <div class="text-center mb-8">
 
-    <!-- Logo Desa -->
-    <div class="mx-auto mb-3 w-20 h-20  overflow-hidden flex items-center justify-center">
-        <img src="{{ asset('images/logo-desa.png') }}"
-             alt="Logo Desa Siwalan"
-             class="object-cover w-full h-full">
-    </div>
+                    <!-- Logo Desa -->
+                    <div class="mx-auto mb-3 w-20 h-20  overflow-hidden flex items-center justify-center">
+                        <img src="{{ asset('images/logo-desa.png') }}" alt="Logo Desa Siwalan"
+                            class="object-cover w-full h-full">
+                    </div>
 
-    <h1 class="text-2xl font-bold text-gray-800">Desa Siwalan</h1>
-    <p class="text-gray-600 mt-1">Portal Admin</p>
-</div>
+                    <h1 class="text-2xl font-bold text-gray-800">Desa Siwalan</h1>
+                    <p class="text-gray-600 mt-1">Portal Admin</p>
+                </div>
 
                 <!-- Error Message -->
                 @if ($errors->any())
@@ -72,20 +71,6 @@
                         Login
                     </button>
                 </form>
-
-                <div class="my-6 flex items-center">
-                    <div class="flex-1 border-t border-gray-300"></div>
-                    <span class="px-3 text-gray-400 text-sm">Atau</span>
-                    <div class="flex-1 border-t border-gray-300"></div>
-                </div>
-
-                <p class="text-center text-gray-600">
-                    Belum punya akun?
-                    <a href="{{ route('register') }}" class="text-green-600 font-semibold hover:text-green-700">
-                        Daftar di sini
-                    </a>
-                </p>
-
             </div>
 
             <p class="text-center text-gray-600 text-sm mt-6">

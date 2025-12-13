@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin\Layanan;
 
-use App\Http\Controllers\Controller;
 use App\Models\Sktm;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Services\FontteService;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class SktmController extends Controller
 {
@@ -33,13 +35,42 @@ class SktmController extends Controller
         }
 
         $validated = $request->validate([
-            'status' => 'required|in:baru,diterima,ditolak',
+            'status' => 'required|in:diterima,ditolak', // hanya diterima/ditolak
         ]);
 
         $sktm->update($validated);
 
+        // Kirim notifikasi WA ke user jika status diterima/ditolak
+        if (in_array($validated['status'], ['diterima', 'ditolak'])) {
+            try {
+                $fontte = new FontteService();
+                $pesan = $this->buildStatusNotifUser($sktm, $validated['status']);
+                $fontte->sendMessage($sktm->no_hp, $pesan);
+            } catch (\Exception $e) {
+                Log::error('Gagal kirim WA status SKTM: ' . $e->getMessage());
+            }
+        }
+
         return redirect()->back()->with('success', 'Status pengajuan berhasil diperbarui.');
     }
+    private function buildStatusNotifUser($sktm, $status)
+    {
+        if ($status === 'diterima') {
+            return "✅ *PENGAJUAN SKTM DITERIMA*\n\n"
+                . "Yth. Bapak/Ibu *{$sktm->nama}*,\n\n"
+                . "Pengajuan Surat Keterangan Tidak Mampu (SKTM) Anda telah *DITERIMA*.\n"
+                . "Silakan datang ke kantor desa untuk mengambil surat Anda.\n\n"
+                . "Terima kasih telah menggunakan layanan Desa Siwalan.";
+        } else {
+            return "❌ *PENGAJUAN SKTM DITOLAK*\n\n"
+                . "Yth. Bapak/Ibu *{$sktm->nama}*,\n\n"
+                . "Mohon maaf, pengajuan SKTM Anda *DITOLAK*.\n"
+                . "Hal ini biasanya karena berkas yang diunggah tidak lengkap atau data belum sesuai.\n"
+                . "Silakan lengkapi berkas atau hubungi perangkat desa untuk informasi lebih lanjut.\n\n"
+                . "Terima kasih.";
+        }
+    }
+
 
     // Cetak surat SKTM dalam format PDF (preview di browser)
     public function cetak(Sktm $sktm)
@@ -87,8 +118,20 @@ class SktmController extends Controller
     }
 
     // Method tidak digunakan untuk admin
-    public function create() { abort(404); }
-    public function store(Request $request) { abort(404); }
-    public function edit(Sktm $sktm) { abort(404); }
-    public function update(Request $request, Sktm $sktm) { abort(404); }
+    public function create()
+    {
+        abort(404);
+    }
+    public function store(Request $request)
+    {
+        abort(404);
+    }
+    public function edit(Sktm $sktm)
+    {
+        abort(404);
+    }
+    public function update(Request $request, Sktm $sktm)
+    {
+        abort(404);
+    }
 }

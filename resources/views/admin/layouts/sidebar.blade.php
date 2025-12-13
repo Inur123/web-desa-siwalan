@@ -60,12 +60,30 @@
 
         <div class="my-4 border-t border-gray-700"></div>
 
-        <a href="{{ route('admin.settings.index') }}"
-            class="group flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-200
-           {{ Request::routeIs('admin.settings.*') ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-500/50 scale-105' : 'text-gray-300 hover:bg-gray-800/50 hover:text-white' }}">
-            <i class="fas fa-cog w-5"></i>
-            <span>Pengaturan</span>
-        </a>
+        <!-- Dropdown Pengaturan (match Layanan style) -->
+        <div>
+            <button onclick="toggleSettingDropdown()"
+                class="group w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 {{ Request::routeIs('admin.settings.*') ? 'bg-gray-800/70 text-white' : 'text-gray-300 hover:bg-gray-800/50 hover:text-white' }}">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-cog w-5"></i>
+                    <span>Pengaturan</span>
+                </div>
+                <i id="settingArrow" class="fas fa-chevron-down transition-transform text-sm {{ Request::routeIs('admin.settings.*') ? 'rotate-180' : '' }}"></i>
+            </button>
+            <div id="settingSubmenu"
+                class="{{ Request::routeIs('admin.settings.*') ? '' : 'hidden' }} ml-4 mt-1 space-y-1 pl-4 border-l-2 border-blue-700">
+                <a href="{{ route('admin.settings.template-surat.index') }}"
+                    class="group flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {{ Request::routeIs('admin.settings.template-surat.*') ? 'bg-blue-600 text-white' : 'text-blue-400 hover:bg-gray-800/50 hover:text-white' }}">
+                    <i class="fas fa-file-alt w-4"></i>
+                    <span>Template Surat</span>
+                </a>
+                <a href="{{ route('admin.settings.fonnte.index') }}"
+                    class="group flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {{ Request::routeIs('admin.settings.fonnte.*') ? 'bg-green-600 text-white' : 'text-green-400 hover:bg-gray-800/50 hover:text-white' }}">
+                    <i class="fab fa-whatsapp w-4"></i>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+        </div>
     </nav>
 
     <div class="mt-auto pt-6 space-y-2">
