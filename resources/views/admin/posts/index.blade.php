@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Daftar Berita - Admin')
+@section('title', 'Daftar Berita')
 
 @section('content')
     <div class="max-w-7xl mx-auto">
@@ -24,9 +24,12 @@
                     <tr>
                         <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">No</th>
                         <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Judul</th>
-                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Kategori</th>
-                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tanggal</th>
-                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Thumbnail</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Kategori
+                        </th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tanggal
+                        </th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Thumbnail
+                        </th>
                         <th class="px-6 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
@@ -54,29 +57,29 @@
 
                             <!-- Aksi jadi tombol -->
                             <td class="px-6 py-4">
-    <div class="flex justify-center items-center gap-2">
-        <a href="{{ route('posts.show', $post->slug) }}"
-           class="inline-flex items-center gap-1 bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded-lg transition-all duration-200 text-xs font-medium shadow-sm hover:shadow-md">
-            <i class="fas fa-eye"></i>
-            <span>Lihat</span>
-        </a>
-        <a href="{{ route('posts.edit', $post->slug) }}"
-           class="inline-flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-all duration-200 text-xs font-medium shadow-sm hover:shadow-md">
-            <i class="fas fa-edit"></i>
-            <span>Edit</span>
-        </a>
-        <form action="{{ route('posts.destroy', $post->slug) }}" method="POST"
-              onsubmit="return confirm('Hapus berita ini?')">
-            @csrf
-            @method('DELETE')
-            <button type="submit"
-                    class="inline-flex items-center gap-1 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition-all duration-200 text-xs font-medium shadow-sm hover:shadow-md">
-                <i class="fas fa-trash"></i>
-                <span>Hapus</span>
-            </button>
-        </form>
-    </div>
-</td>
+                                <div class="flex justify-center items-center gap-2">
+                                    <a href="{{ route('posts.show', $post->slug) }}"
+                                        class="inline-flex items-center gap-1 bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded-lg transition-all duration-200 text-xs font-medium shadow-sm hover:shadow-md">
+                                        <i class="fas fa-eye"></i>
+                                        <span>Lihat</span>
+                                    </a>
+                                    <a href="{{ route('posts.edit', $post->slug) }}"
+                                        class="inline-flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-all duration-200 text-xs font-medium shadow-sm hover:shadow-md">
+                                        <i class="fas fa-edit"></i>
+                                        <span>Edit</span>
+                                    </a>
+                                    <form action="{{ route('posts.destroy', $post->slug) }}" method="POST"
+                                        onsubmit="return confirm('Hapus berita ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="inline-flex items-center gap-1 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition-all duration-200 text-xs font-medium shadow-sm hover:shadow-md">
+                                            <i class="fas fa-trash"></i>
+                                            <span>Hapus</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
 
 
 

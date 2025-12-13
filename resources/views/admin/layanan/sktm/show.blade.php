@@ -56,11 +56,11 @@
                     <label class="text-sm text-gray-600">Alamat</label>
                     <p class="font-medium text-gray-800">{{ $sktm->alamat }}</p>
                 </div>
-                @if($sktm->nama_anak)
-                <div>
-                    <label class="text-sm text-gray-600">Nama Anak</label>
-                    <p class="font-medium text-gray-800">{{ $sktm->nama_anak }}</p>
-                </div>
+                @if ($sktm->nama_anak)
+                    <div>
+                        <label class="text-sm text-gray-600">Nama Anak</label>
+                        <p class="font-medium text-gray-800">{{ $sktm->nama_anak }}</p>
+                    </div>
                 @endif
                 <div>
                     <label class="text-sm text-gray-600">Keperluan</label>
@@ -73,39 +73,39 @@
             <h2 class="text-xl font-semibold mb-4 text-gray-800">Dokumen Pendukung</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                @if($sktm->kk)
-                <div>
-                    <label class="text-sm text-gray-600 block mb-2">Kartu Keluarga</label>
-                    <a href="{{ asset('storage/' . $sktm->kk) }}" target="_blank"
-                       class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm">
-                        <i class="fas fa-file-image"></i> Lihat KK
-                    </a>
-                </div>
+                @if ($sktm->kk)
+                    <div>
+                        <label class="text-sm text-gray-600 block mb-2">Kartu Keluarga</label>
+                        <a href="{{ asset('storage/' . $sktm->kk) }}" target="_blank"
+                            class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm">
+                            <i class="fas fa-file-image"></i> Lihat KK
+                        </a>
+                    </div>
                 @endif
 
-                @if($sktm->ktp)
-                <div>
-                    <label class="text-sm text-gray-600 block mb-2">KTP</label>
-                    <a href="{{ asset('storage/' . $sktm->ktp) }}" target="_blank"
-                       class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm">
-                        <i class="fas fa-file-image"></i> Lihat KTP
-                    </a>
-                </div>
+                @if ($sktm->ktp)
+                    <div>
+                        <label class="text-sm text-gray-600 block mb-2">KTP</label>
+                        <a href="{{ asset('storage/' . $sktm->ktp) }}" target="_blank"
+                            class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm">
+                            <i class="fas fa-file-image"></i> Lihat KTP
+                        </a>
+                    </div>
                 @endif
 
-                @if($sktm->pengantar_rt)
-                <div>
-                    <label class="text-sm text-gray-600 block mb-2">Pengantar RT</label>
-                    <a href="{{ asset('storage/' . $sktm->pengantar_rt) }}" target="_blank"
-                       class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm">
-                        <i class="fas fa-file-image"></i> Lihat Pengantar
-                    </a>
-                </div>
+                @if ($sktm->pengantar_rt)
+                    <div>
+                        <label class="text-sm text-gray-600 block mb-2">Pengantar RT</label>
+                        <a href="{{ asset('storage/' . $sktm->pengantar_rt) }}" target="_blank"
+                            class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm">
+                            <i class="fas fa-file-image"></i> Lihat Pengantar
+                        </a>
+                    </div>
                 @endif
             </div>
 
-            @if(!$sktm->kk && !$sktm->ktp && !$sktm->pengantar_rt)
-            <p class="text-gray-500 text-sm">Tidak ada dokumen yang dilampirkan</p>
+            @if (!$sktm->kk && !$sktm->ktp && !$sktm->pengantar_rt)
+                <p class="text-gray-500 text-sm">Tidak ada dokumen yang dilampirkan</p>
             @endif
         </div>
 
@@ -115,7 +115,7 @@
             <div class="mb-4">
                 <label class="text-sm text-gray-600">Status Saat Ini</label>
                 <p class="text-lg font-medium">
-                    @if($sktm->status === 'baru')
+                    @if ($sktm->status === 'baru')
                         <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full">Baru</span>
                     @elseif($sktm->status === 'diterima')
                         <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full">Diterima</span>
@@ -125,43 +125,44 @@
                 </p>
             </div>
 
-            @if($sktm->status === 'baru')
-            <form action="{{ route('admin.sktm.updateStatus', $sktm->uuid) }}" method="POST" class="mt-6">
-                @csrf
-                @method('PATCH')
+            @if ($sktm->status === 'baru')
+                <form action="{{ route('admin.sktm.updateStatus', $sktm->uuid) }}" method="POST" class="mt-6">
+                    @csrf
+                    @method('PATCH')
 
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Ubah Status</label>
-                    <select name="status" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500">
-                        <option value="diterima" {{ $sktm->status === 'diterima' ? 'selected' : '' }}>Diterima</option>
-                        <option value="ditolak" {{ $sktm->status === 'ditolak' ? 'selected' : '' }}>Ditolak</option>
-                    </select>
-                </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Ubah Status</label>
+                        <select name="status"
+                            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500">
+                            <option value="diterima" {{ $sktm->status === 'diterima' ? 'selected' : '' }}>Diterima</option>
+                            <option value="ditolak" {{ $sktm->status === 'ditolak' ? 'selected' : '' }}>Ditolak</option>
+                        </select>
+                    </div>
 
-                <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
-                    <i class="fas fa-save"></i> Update Status
-                </button>
-            </form>
+                    <button type="submit"
+                        class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
+                        <i class="fas fa-save"></i> Update Status
+                    </button>
+                </form>
             @elseif($sktm->status === 'diterima')
-            <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p class="text-sm text-gray-600 mb-4">
-                    <i class="fas fa-check-circle text-green-500"></i>
-                    Pengajuan telah <strong>diterima</strong>. Anda dapat mencetak surat SKTM sekarang.
-                </p>
-                <a href="{{ route('admin.sktm.cetak', $sktm->uuid) }}"
-                   target="_blank"
-                   class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
-                    <i class="fas fa-file-pdf"></i> Lihat & Cetak Surat PDF
-                </a>
-            </div>
+                <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p class="text-sm text-gray-600 mb-4">
+                        <i class="fas fa-check-circle text-green-500"></i>
+                        Pengajuan telah <strong>diterima</strong>. Anda dapat mencetak surat SKTM sekarang.
+                    </p>
+                    <a href="{{ route('admin.sktm.cetak', $sktm->uuid) }}" target="_blank"
+                        class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                        <i class="fas fa-file-pdf"></i> Lihat & Cetak Surat PDF
+                    </a>
+                </div>
             @else
-            <div class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
-                <p class="text-sm text-gray-600">
-                    <i class="fas fa-lock text-gray-400"></i>
-                    Status tidak dapat diubah karena pengajuan sudah <strong>{{ $sktm->status }}</strong>.
-                    Status final tidak dapat diubah kembali.
-                </p>
-            </div>
+                <div class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                    <p class="text-sm text-gray-600">
+                        <i class="fas fa-lock text-gray-400"></i>
+                        Status tidak dapat diubah karena pengajuan sudah <strong>{{ $sktm->status }}</strong>.
+                        Status final tidak dapat diubah kembali.
+                    </p>
+                </div>
             @endif
         </div>
 

@@ -10,7 +10,8 @@
         </div>
 
         @if (session('success'))
-            <div class="bg-green-50 border-l-4 border-green-500 text-green-800 px-4 py-3 rounded-lg mb-6 flex items-center gap-3 shadow-sm">
+            <div
+                class="bg-green-50 border-l-4 border-green-500 text-green-800 px-4 py-3 rounded-lg mb-6 flex items-center gap-3 shadow-sm">
                 <i class="fas fa-check-circle text-green-500"></i>
                 <span>{{ session('success') }}</span>
             </div>
@@ -21,11 +22,15 @@
                 <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
                     <tr>
                         <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">No</th>
-                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Nama Pemohon</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Nama
+                            Pemohon</th>
                         <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">NIK</th>
-                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Keperluan</th>
-                        <th class="px-6 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">Status</th>
-                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tanggal</th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Keperluan
+                        </th>
+                        <th class="px-6 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">Status
+                        </th>
+                        <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tanggal
+                        </th>
                         <th class="px-6 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
@@ -35,20 +40,24 @@
                             <td class="px-6 py-4 text-sm text-gray-700 font-medium">{{ $sktms->firstItem() + $index }}</td>
                             <td class="px-6 py-4 text-sm font-semibold text-gray-800">{{ $item->nama }}</td>
                             <td class="px-6 py-4 text-sm text-gray-600 font-mono">{{ $item->nik }}</td>
-                            <td class="px-6 py-4 text-sm text-gray-700">{{ \Illuminate\Support\Str::limit($item->keperluan, 30) }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-700">
+                                {{ \Illuminate\Support\Str::limit($item->keperluan, 30) }}</td>
                             <td class="px-6 py-4 text-sm text-center">
-                                @if($item->status === 'baru')
-                                    <span class="inline-flex items-center gap-1 px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">
+                                @if ($item->status === 'baru')
+                                    <span
+                                        class="inline-flex items-center gap-1 px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">
                                         <i class="fas fa-clock"></i>
                                         Baru
                                     </span>
                                 @elseif($item->status === 'diterima')
-                                    <span class="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">
+                                    <span
+                                        class="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">
                                         <i class="fas fa-check-circle"></i>
                                         Diterima
                                     </span>
                                 @else
-                                    <span class="inline-flex items-center gap-1 px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-semibold">
+                                    <span
+                                        class="inline-flex items-center gap-1 px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-semibold">
                                         <i class="fas fa-times-circle"></i>
                                         Ditolak
                                     </span>

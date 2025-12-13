@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Admin Desa Siwalan</title>
+    <title>@yield('title', 'Dashboard') - Admin Desa Siwalan</title>
     @vite('resources/css/app.css')
     <!-- Added Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -32,7 +32,8 @@
             }
 
             #mainContent {
-                margin-left: 16rem; /* w-64 = 16rem */
+                margin-left: 16rem;
+                /* w-64 = 16rem */
             }
         }
 
@@ -147,5 +148,6 @@
     </script>
 </body>
 
-    <script src="{{ asset('js/sidebar-dropdown.js') }}"></script>
+<script src="{{ asset('js/sidebar-dropdown.js') }}"></script>
+
 </html>

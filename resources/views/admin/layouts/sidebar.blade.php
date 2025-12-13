@@ -68,7 +68,8 @@
                     <i class="fas fa-cog w-5"></i>
                     <span>Pengaturan</span>
                 </div>
-                <i id="settingArrow" class="fas fa-chevron-down transition-transform text-sm {{ Request::routeIs('admin.settings.*') ? 'rotate-180' : '' }}"></i>
+                <i id="settingArrow"
+                    class="fas fa-chevron-down transition-transform text-sm {{ Request::routeIs('admin.settings.*') ? 'rotate-180' : '' }}"></i>
             </button>
             <div id="settingSubmenu"
                 class="{{ Request::routeIs('admin.settings.*') ? '' : 'hidden' }} ml-4 mt-1 space-y-1 pl-4 border-l-2 border-blue-700">

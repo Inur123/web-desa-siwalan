@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Tambah Berita - Admin')
+@section('title', 'Tambah Berita')
 
 @section('content')
     <div class="bg-white rounded-lg shadow p-6 mb-8 w-full">

@@ -35,7 +35,8 @@
 
             <div class="relative">
                 <button onclick="toggleDropdown()" class="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg">
-                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
+                    <div
+                        class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
                         {{ $initial }}
                     </div>
                     <i id="dropdownArrow" class="fas fa-chevron-down text-gray-600"></i>
