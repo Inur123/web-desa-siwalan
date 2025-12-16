@@ -57,7 +57,7 @@
 
                             <div>
                                 <label class="block text-sm font-semibold text-gray-900 mb-2">Tempat Lahir <span class="text-red-500">*</span></label>
-                                <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}" required placeholder="Contoh: Magetan" minlength="3" maxlength="255"
+                                <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}" required placeholder="Contoh: ponorogo" minlength="3" maxlength="255"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('tempat_lahir') border-red-500 @enderror">
                                 @error('tempat_lahir')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>

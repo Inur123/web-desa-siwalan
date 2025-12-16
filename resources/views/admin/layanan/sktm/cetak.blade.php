@@ -152,11 +152,11 @@
             </div>
         @endif
         <div class="kop-text">
-            <h2>{{ strtoupper($settings['kop_surat_kabupaten'] ?? 'PEMERINTAH KABUPATEN MAGETAN') }}</h2>
+            <h2>{{ strtoupper($settings['kop_surat_kabupaten'] ?? 'PEMERINTAH KABUPATEN Ponorogo') }}</h2>
             <h2>{{ strtoupper($settings['kop_surat_kecamatan'] ?? 'KECAMATAN PANEKAN') }}</h2>
             <h3>{{ strtoupper($settings['kop_surat_desa'] ?? 'DESA SIWALAN') }}</h3>
             <p>{{ $settings['kop_surat_alamat'] ?? 'Jl. Raya Siwalan No. 01, Kode Pos 63396' }}</p>
-            <p>{{ $settings['kop_surat_kontak'] ?? 'Email: desasiwalan@magetan.go.id | Telp: (0351) 123456' }}</p>
+            <p>{{ $settings['kop_surat_kontak'] ?? 'Email: desasiwalan@Ponorogo.go.id | Telp: (0351) 123456' }}</p>
         </div>
     </div>
 
@@ -169,7 +169,7 @@
     <!-- ISI SURAT -->
     <div class="isi-surat">
         <p>
-            Yang bertanda tangan di bawah ini Kepala Desa Siwalan, Kecamatan Panekan, Kabupaten Magetan,
+            Yang bertanda tangan di bawah ini Kepala Desa Siwalan, Kecamatan Panekan, Kabupaten Ponorogo,
             dengan ini menerangkan bahwa:
         </p>
     </div>

@@ -28,7 +28,7 @@
             <!-- Kontak -->
             <div>
                 <h4 class="text-white font-semibold mb-4">Kontak</h4>
-                <p class="text-sm mb-2"><strong>Alamat:</strong> Jl. Utama Desa Siwalan, Magetan</p>
+                <p class="text-sm mb-2"><strong>Alamat:</strong> Jl. Utama Desa Siwalan, ponorogo</p>
                 <p class="text-sm mb-2"><strong>Email:</strong> desa.siwalan@mail.com</p>
                 <p class="text-sm"><strong>Jam Layanan:</strong> Senin - Jumat, 08:00 - 16:00 WIB</p>
             </div>

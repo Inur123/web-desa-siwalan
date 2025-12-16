@@ -13,7 +13,7 @@
             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
                 <div class="text-4xl mb-4 text-red-600"><i class="fas fa-map-marker-alt"></i></div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Alamat</h3>
-                <p class="text-gray-700">Jl. Utama Desa Siwalan, Kecamatan Magetan, Provinsi Jawa Timur, 63314</p>
+                <p class="text-gray-700">Jl. Utama Desa Siwalan, Kecamatan ponorogo, Provinsi Jawa Timur, 63314</p>
             </div>
 
             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">

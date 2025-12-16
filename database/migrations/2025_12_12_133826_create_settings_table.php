@@ -76,7 +76,8 @@ return new class extends Migration
                 'updated_at' => now(),
             ],
             [
-                'key' => 'fontte_admin_phone',
+
+                'key' => 'fonnte_admin_phone',
                 'value' => '',
                 'created_at' => now(),
                 'updated_at' => now(),

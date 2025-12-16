@@ -41,7 +41,7 @@
                 <div class="bg-white border border-gray-200 rounded-xl p-8 mb-8">
                     <h2 class="text-2xl font-bold text-gray-900 mb-6">Sejarah Desa</h2>
                     <p class="text-gray-700 leading-relaxed mb-4">
-                        Desa Siwalan merupakan desa yang terletak di Kecamatan Magetan, Provinsi Jawa Timur dengan sejarah panjang yang kaya akan tradisi dan budaya lokal. Desa ini berkembang dari pemukiman pertanian tradisional menjadi desa modern yang mengintegrasikan nilai-nilai tradisional dengan perkembangan teknologi kontemporer.
+                        Desa Siwalan merupakan desa yang terletak di Kecamatan ponorogo, Provinsi Jawa Timur dengan sejarah panjang yang kaya akan tradisi dan budaya lokal. Desa ini berkembang dari pemukiman pertanian tradisional menjadi desa modern yang mengintegrasikan nilai-nilai tradisional dengan perkembangan teknologi kontemporer.
                     </p>
                     <p class="text-gray-700 leading-relaxed">
                         Dengan jumlah penduduk lebih dari 4.000 jiwa, Desa Siwalan terus berinovasi dalam memberikan pelayanan terbaik kepada warganya sambil mempertahankan identitas budaya dan kearifan lokal yang telah diwariskan turun temurun.
@@ -100,7 +100,7 @@
                     <div class="space-y-3 text-sm">
                         <div>
                             <p class="text-gray-600 font-semibold">Alamat</p>
-                            <p class="text-gray-700">Jl. Utama Desa Siwalan, Magetan, Jawa Timur</p>
+                            <p class="text-gray-700">Jl. Utama Desa Siwalan, ponorogo, Jawa Timur</p>
                         </div>
                         <div>
                             <p class="text-gray-600 font-semibold">Email</p>

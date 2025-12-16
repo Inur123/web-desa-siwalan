@@ -12,13 +12,12 @@ class FontteService
     protected $baseUrl = 'https://api.fonnte.com';
     protected $adminPhone;
 
-    public function __construct()
+        public function __construct()
     {
-        // Ambil dari database, jika tidak ada gunakan default
-        $this->token = Setting::get('fonnte_token', '1wR9oZeDLo3tbFaACneb');
-        $this->adminPhone = Setting::get('fontte_admin_phone', '6285168683707');
-
+        $this->token = Setting::get('fonnte_token', '');
+        $this->adminPhone = Setting::get('fonnte_admin_phone', ''); // ✅ sesuai DB
     }
+
 
     /**
      * Kirim pesan WhatsApp
