@@ -35,7 +35,7 @@ class SktmController extends Controller
         }
 
         $validated = $request->validate([
-            'status' => 'required|in:diterima,ditolak', // hanya diterima/ditolak
+            'status' => 'required|in:diterima,ditolak',
         ]);
 
         $sktm->update($validated);
@@ -53,24 +53,29 @@ class SktmController extends Controller
 
         return redirect()->back()->with('success', 'Status pengajuan berhasil diperbarui.');
     }
+
     private function buildStatusNotifUser($sktm, $status)
     {
+        // Pakai kode layanan (bukan nomor surat)
+        $kode = $sktm->kode_layanan ?? '-';
+
         if ($status === 'diterima') {
             return "✅ *PENGAJUAN SKTM DITERIMA*\n\n"
                 . "Yth. Bapak/Ibu *{$sktm->nama}*,\n\n"
-                . "Pengajuan Surat Keterangan Tidak Mampu (SKTM) Anda telah *DITERIMA*.\n"
+                . "Pengajuan Surat Keterangan Tidak Mampu (SKTM) Anda telah *DITERIMA*.\n\n"
+                . "🔑 *Kode Layanan:* *{$kode}*\n"
                 . "Silakan datang ke kantor desa untuk mengambil surat Anda.\n\n"
                 . "Terima kasih telah menggunakan layanan Desa Siwalan.";
-        } else {
-            return "❌ *PENGAJUAN SKTM DITOLAK*\n\n"
-                . "Yth. Bapak/Ibu *{$sktm->nama}*,\n\n"
-                . "Mohon maaf, pengajuan SKTM Anda *DITOLAK*.\n"
-                . "Hal ini biasanya karena berkas yang diunggah tidak lengkap atau data belum sesuai.\n"
-                . "Silakan lengkapi berkas atau hubungi perangkat desa untuk informasi lebih lanjut.\n\n"
-                . "Terima kasih.";
         }
-    }
 
+        return "❌ *PENGAJUAN SKTM DITOLAK*\n\n"
+            . "Yth. Bapak/Ibu *{$sktm->nama}*,\n\n"
+            . "Mohon maaf, pengajuan SKTM Anda *DITOLAK*.\n\n"
+            . "🔑 *Kode Layanan:* *{$kode}*\n"
+            . "Hal ini biasanya karena berkas yang diunggah tidak lengkap atau data belum sesuai.\n"
+            . "Silakan lengkapi berkas atau hubungi perangkat desa untuk informasi lebih lanjut.\n\n"
+            . "Terima kasih.";
+    }
 
     // Cetak surat SKTM dalam format PDF (preview di browser)
     public function cetak(Sktm $sktm)
@@ -80,27 +85,20 @@ class SktmController extends Controller
             return redirect()->back()->with('error', 'Surat hanya dapat dicetak untuk pengajuan yang sudah diterima.');
         }
 
-        // Generate nomor surat
-        $tahun = date('Y');
-        $bulan = date('m');
-        $nomorUrut = str_pad($sktm->id, 4, '0', STR_PAD_LEFT);
-        $nomorSurat = "474.3/{$nomorUrut}/SKTM/{$bulan}/{$tahun}";
-
         // Get settings dari database
         $settings = Setting::all()->pluck('value', 'key');
 
-        // Load view untuk PDF
+        // ✅ HAPUS nomor surat, ganti kirim kode layanan ke view (kalau mau ditampilkan)
         $pdf = Pdf::loadView('admin.layanan.sktm.cetak', [
             'sktm' => $sktm,
-            'nomorSurat' => $nomorSurat,
+            'kodeLayanan' => $sktm->kode_layanan, // optional di template
             'settings' => $settings
         ]);
 
-        // Set paper size dan orientation
         $pdf->setPaper('A4', 'portrait');
 
-        // Stream PDF ke browser (preview dengan opsi download)
-        $fileName = 'SKTM_' . str_replace(' ', '_', $sktm->nama) . '_' . date('Ymd') . '.pdf';
+        // Nama file PDF pakai kode layanan biar rapi
+        $fileName = 'SKTM_' . ($sktm->kode_layanan ?? 'KODE') . '_' . date('Ymd') . '.pdf';
         return $pdf->stream($fileName);
     }
 

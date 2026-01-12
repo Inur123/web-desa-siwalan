@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('nama'); // Changed to TEXT for encryption
             $table->text('nik'); // Changed to TEXT for encryption
             $table->date('ttl');
+            $table->string('kode_layanan')->unique();
             $table->text('tempat_lahir'); // Changed to TEXT for encryption
             $table->longText('alamat'); // Changed to LONGTEXT for encryption
             $table->text('status_perkawinan'); // Changed to TEXT for encryption

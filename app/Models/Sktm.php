@@ -15,21 +15,22 @@ class Sktm extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'uuid',
-        'nama',
-        'nik',
-        'ttl',
-        'tempat_lahir',
-        'alamat',
-        'status_perkawinan',
-        'no_hp',
-        'nama_anak',
-        'keperluan',
-        'kk',
-        'ktp',
-        'pengantar_rt',
-        'status',
-    ];
+    'uuid',
+    'kode_layanan',
+    'nama',
+    'nik',
+    'ttl',
+    'tempat_lahir',
+    'alamat',
+    'status_perkawinan',
+    'no_hp',
+    'nama_anak',
+    'keperluan',
+    'kk',
+    'ktp',
+    'pengantar_rt',
+    'status',
+];
 
     protected $casts = [
         'ttl' => 'date',

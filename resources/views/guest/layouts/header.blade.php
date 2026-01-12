@@ -45,28 +45,36 @@
 
 <header class="sticky top-0 z-50 bg-white shadow-md">
     <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-       <a href="/" class="flex items-center gap-2">
-    <div class="w-10 h-10 rounded-lg overflow-hidden bg-white shadow flex items-center justify-center">
-        <img src="{{ asset('images/logo-desa.png') }}"
-             alt="Logo Desa Siwalan"
-             class="object-cover w-full h-full">
-    </div>
-    <span class="font-bold text-xl text-gray-900">Desa Siwalan</span>
-</a>
-
+        <a href="/" class="flex items-center gap-2">
+            <div class="w-10 h-10 rounded-lg overflow-hidden bg-white shadow flex items-center justify-center">
+                <img src="{{ asset('images/logo-desa.png') }}" alt="Logo Desa Siwalan" class="object-cover w-full h-full">
+            </div>
+            <span class="font-bold text-xl text-gray-900">Desa Siwalan</span>
+        </a>
 
         {{-- DESKTOP MENU --}}
         <div class="hidden md:flex gap-8">
             <a href="/"
                 class="font-medium transition {{ request()->is('/') ? 'text-green-600 font-semibold' : 'text-gray-700 hover:text-green-600' }}">Home</a>
+
             <a href="/profil"
                 class="font-medium transition {{ request()->is('profil*') ? 'text-green-600 font-semibold' : 'text-gray-700 hover:text-green-600' }}">Profil</a>
+
             <a href="/layanan"
                 class="font-medium transition {{ request()->is('layanan*') ? 'text-green-600 font-semibold' : 'text-gray-700 hover:text-green-600' }}">Layanan</a>
+
+            {{-- ✅ MENU BARU --}}
+
+
             <a href="/pengaduan"
                 class="font-medium transition {{ request()->is('pengaduan*') ? 'text-green-600 font-semibold' : 'text-gray-700 hover:text-green-600' }}">Pengaduan</a>
+
             <a href="/berita"
                 class="font-medium transition {{ request()->is('berita*') ? 'text-green-600 font-semibold' : 'text-gray-700 hover:text-green-600' }}">Berita</a>
+            <a href="{{ route('guest.cek-status-layanan') }}"
+                class="font-medium transition {{ request()->is('cek-status-layanan*') ? 'text-green-600 font-semibold' : 'text-gray-700 hover:text-green-600' }}">
+                Cek Status Layanan
+            </a>
         </div>
 
         <button class="md:hidden text-gray-700" id="menuBtn">
@@ -109,6 +117,9 @@
                 Layanan
             </a>
 
+            {{-- ✅ MENU BARU --}}
+
+
             <a href="/pengaduan"
                 class="block font-medium py-3 border-b border-gray-200 {{ request()->is('pengaduan*') ? 'text-green-600 font-semibold' : 'text-gray-700 hover:text-green-600' }}">
                 Pengaduan
@@ -118,17 +129,21 @@
                 class="block font-medium py-3 border-b border-gray-200 {{ request()->is('berita*') ? 'text-green-600 font-semibold' : 'text-gray-700 hover:text-green-600' }}">
                 Berita
             </a>
+            <a href="{{ route('guest.cek-status-layanan') }}"
+                class="block font-medium py-3 border-b border-gray-200 {{ request()->is('cek-status-layanan*') ? 'text-green-600 font-semibold' : 'text-gray-700 hover:text-green-600' }}">
+                Cek Status Layanan
+            </a>
             @if (Auth::check())
-        <a href="{{ route('admin.dashboard') }}"
-            class="block w-full text-center bg-green-600 text-white font-semibold rounded-lg py-3 mt-4 hover:bg-green-700 transition">
-            Dashboard
-        </a>
-    @else
-        <a href="{{ route('login') }}"
-            class="block w-full text-center bg-green-600 text-white font-semibold rounded-lg py-3 mt-4 hover:bg-green-700 transition">
-            Login
-        </a>
-    @endif
+                <a href="{{ route('admin.dashboard') }}"
+                    class="block w-full text-center bg-green-600 text-white font-semibold rounded-lg py-3 mt-4 hover:bg-green-700 transition">
+                    Dashboard
+                </a>
+            @else
+                <a href="{{ route('login') }}"
+                    class="block w-full text-center bg-green-600 text-white font-semibold rounded-lg py-3 mt-4 hover:bg-green-700 transition">
+                    Login
+                </a>
+            @endif
         </div>
     </div>
 </div>

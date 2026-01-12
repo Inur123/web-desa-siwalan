@@ -27,7 +27,8 @@
                 </div>
             @endif
 
-            <form action="{{ route('guest.sktm.store') }}" method="POST" enctype="multipart/form-data" class="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+            <form action="{{ route('guest.sktm.store') }}" method="POST" enctype="multipart/form-data"
+                class="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
                 @csrf
 
                 <div class="space-y-6">
@@ -37,7 +38,8 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Nama Lengkap <span class="text-red-500">*</span></label>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Nama Lengkap <span
+                                        class="text-red-500">*</span></label>
                                 <input type="text" name="nama" value="{{ old('nama') }}" required
                                     placeholder="Masukkan nama lengkap" minlength="3" maxlength="255" pattern="[a-zA-Z\s]+"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('nama') border-red-500 @enderror">
@@ -47,8 +49,10 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">NIK <span class="text-red-500">*</span></label>
-                                <input type="text" name="nik" value="{{ old('nik') }}" required minlength="16" maxlength="16" placeholder="Masukkan NIK 16 digit" pattern="[0-9]{16}"
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">NIK <span
+                                        class="text-red-500">*</span></label>
+                                <input type="text" name="nik" value="{{ old('nik') }}" required minlength="16"
+                                    maxlength="16" placeholder="Masukkan NIK 16 digit" pattern="[0-9]{16}"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('nik') border-red-500 @enderror">
                                 @error('nik')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -56,8 +60,10 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Tempat Lahir <span class="text-red-500">*</span></label>
-                                <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}" required placeholder="Contoh: ponorogo" minlength="3" maxlength="255"
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Tempat Lahir <span
+                                        class="text-red-500">*</span></label>
+                                <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}" required
+                                    placeholder="Contoh: ponorogo" minlength="3" maxlength="255"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('tempat_lahir') border-red-500 @enderror">
                                 @error('tempat_lahir')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -65,7 +71,8 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Tanggal Lahir <span class="text-red-500">*</span></label>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Tanggal Lahir <span
+                                        class="text-red-500">*</span></label>
                                 <input type="date" name="ttl" value="{{ old('ttl') }}" required
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('ttl') border-red-500 @enderror">
                                 @error('ttl')
@@ -74,14 +81,22 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Status Perkawinan <span class="text-red-500">*</span></label>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Status Perkawinan <span
+                                        class="text-red-500">*</span></label>
                                 <select name="status_perkawinan" required
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('status_perkawinan') border-red-500 @enderror">
                                     <option value="">-- Pilih Status --</option>
-                                    <option value="Belum Kawin" {{ old('status_perkawinan') == 'Belum Kawin' ? 'selected' : '' }}>Belum Kawin</option>
-                                    <option value="Kawin" {{ old('status_perkawinan') == 'Kawin' ? 'selected' : '' }}>Kawin</option>
-                                    <option value="Cerai Hidup" {{ old('status_perkawinan') == 'Cerai Hidup' ? 'selected' : '' }}>Cerai Hidup</option>
-                                    <option value="Cerai Mati" {{ old('status_perkawinan') == 'Cerai Mati' ? 'selected' : '' }}>Cerai Mati</option>
+                                    <option value="Belum Kawin"
+                                        {{ old('status_perkawinan') == 'Belum Kawin' ? 'selected' : '' }}>Belum Kawin
+                                    </option>
+                                    <option value="Kawin" {{ old('status_perkawinan') == 'Kawin' ? 'selected' : '' }}>
+                                        Kawin</option>
+                                    <option value="Cerai Hidup"
+                                        {{ old('status_perkawinan') == 'Cerai Hidup' ? 'selected' : '' }}>Cerai Hidup
+                                    </option>
+                                    <option value="Cerai Mati"
+                                        {{ old('status_perkawinan') == 'Cerai Mati' ? 'selected' : '' }}>Cerai Mati
+                                    </option>
                                 </select>
                                 @error('status_perkawinan')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -89,8 +104,10 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">No. HP <span class="text-red-500">*</span></label>
-                                <input type="tel" name="no_hp" value="{{ old('no_hp') }}" required placeholder="Contoh: 08123456789" minlength="10" maxlength="15" pattern="[0-9]+"
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">No. HP <span
+                                        class="text-red-500">*</span></label>
+                                <input type="tel" name="no_hp" value="{{ old('no_hp') }}" required
+                                    placeholder="Contoh: 08123456789" minlength="10" maxlength="15" pattern="[0-9]+"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('no_hp') border-red-500 @enderror">
                                 @error('no_hp')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -98,7 +115,8 @@
                             </div>
 
                             <div class="md:col-span-3">
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Alamat Lengkap <span class="text-red-500">*</span></label>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Alamat Lengkap <span
+                                        class="text-red-500">*</span></label>
                                 <textarea name="alamat" rows="2" required placeholder="Masukkan alamat lengkap" minlength="10" maxlength="500"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('alamat') border-red-500 @enderror">{{ old('alamat') }}</textarea>
                                 @error('alamat')
@@ -108,7 +126,9 @@
 
                             <div>
                                 <label class="block text-sm font-semibold text-gray-900 mb-2">Nama Anak (Jika Ada)</label>
-                                <input type="text" name="nama_anak" value="{{ old('nama_anak') }}" placeholder="Kosongkan jika tidak ada" minlength="3" maxlength="255" pattern="[a-zA-Z\s]+"
+                                <input type="text" name="nama_anak" value="{{ old('nama_anak') }}"
+                                    placeholder="Kosongkan jika tidak ada" minlength="3" maxlength="255"
+                                    pattern="[a-zA-Z\s]+"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('nama_anak') border-red-500 @enderror">
                                 <p class="text-xs text-gray-600 mt-1">Opsional - Isi jika pengajuan untuk keperluan anak</p>
                                 @error('nama_anak')
@@ -117,9 +137,10 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Keperluan <span class="text-red-500">*</span></label>
-                                <input type="text" name="keperluan" value="{{ old('keperluan') }}" required minlength="3" maxlength="255"
-                                    placeholder="Contoh: Beasiswa, Bantuan Sosial, dll"
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Keperluan <span
+                                        class="text-red-500">*</span></label>
+                                <input type="text" name="keperluan" value="{{ old('keperluan') }}" required
+                                    minlength="3" maxlength="255" placeholder="Contoh: Beasiswa, Bantuan Sosial, dll"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('keperluan') border-red-500 @enderror">
                                 @error('keperluan')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -130,12 +151,15 @@
 
                     <!-- Dokumen Pendukung Section -->
                     <div>
-                        <h2 class="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">Dokumen Pendukung <span class="text-red-500 text-sm">(Wajib Semua)</span></h2>
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">
+                            Dokumen Pendukung <span class="text-gray-500 text-sm">(Opsional)</span>
+                        </h2>
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Kartu Keluarga <span class="text-red-500">*</span></label>
-                                <input type="file" name="kk" accept="image/jpeg,image/png,image/jpg,application/pdf" required
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Kartu Keluarga</label>
+                                <input type="file" name="kk"
+                                    accept="image/jpeg,image/png,image/jpg,application/pdf"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('kk') border-red-500 @enderror">
                                 <p class="text-xs text-gray-600 mt-1">Format: JPG, PNG, PDF. Max 2MB</p>
                                 @error('kk')
@@ -144,8 +168,9 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">KTP <span class="text-red-500">*</span></label>
-                                <input type="file" name="ktp" accept="image/jpeg,image/png,image/jpg,application/pdf" required
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">KTP</label>
+                                <input type="file" name="ktp"
+                                    accept="image/jpeg,image/png,image/jpg,application/pdf"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('ktp') border-red-500 @enderror">
                                 <p class="text-xs text-gray-600 mt-1">Format: JPG, PNG, PDF. Max 2MB</p>
                                 @error('ktp')
@@ -154,8 +179,9 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Pengantar RT <span class="text-red-500">*</span></label>
-                                <input type="file" name="pengantar_rt" accept="image/jpeg,image/png,image/jpg,application/pdf" required
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Pengantar RT</label>
+                                <input type="file" name="pengantar_rt"
+                                    accept="image/jpeg,image/png,image/jpg,application/pdf"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('pengantar_rt') border-red-500 @enderror">
                                 <p class="text-xs text-gray-600 mt-1">Format: JPG, PNG, PDF. Max 2MB</p>
                                 @error('pengantar_rt')
@@ -165,10 +191,12 @@
                         </div>
                     </div>
 
+
                     <!-- Submit Button -->
                     <div class="flex items-center gap-3 pt-4 border-t border-gray-200">
                         <input type="checkbox" id="agree" class="w-4 h-4 rounded border-gray-300" required>
-                        <label for="agree" class="text-sm text-gray-700">Saya menyatakan bahwa data yang saya isi adalah benar dan dapat dipertanggungjawabkan</label>
+                        <label for="agree" class="text-sm text-gray-700">Saya menyatakan bahwa data yang saya isi
+                            adalah benar dan dapat dipertanggungjawabkan</label>
                     </div>
 
                     <button type="submit"
@@ -189,7 +217,9 @@
                 input.addEventListener('change', function() {
                     if (this.files && this.files[0]) {
                         const file = this.files[0];
-                        const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+                        const validTypes = ['image/jpeg', 'image/jpg', 'image/png',
+                            'application/pdf'
+                        ];
 
                         // Cek ukuran file (max 2MB)
                         if (file.size > 2 * 1024 * 1024) {

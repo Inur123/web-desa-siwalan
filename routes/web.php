@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Guest\LayananController;
 use App\Http\Controllers\Guest\ProfileController;
 use App\Http\Controllers\Guest\PengaduanController;
+use App\Http\Controllers\Guest\CekStatusLayananController;
 use App\Http\Controllers\Admin\Settings\FontteController;
 use App\Http\Controllers\Admin\Settings\TemplateSuratController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
@@ -74,3 +75,10 @@ Route::get('/layanan/sktm', [GuestSktmController::class, 'index'])->name('guest.
 Route::post('/layanan/sktm/kirim', [GuestSktmController::class, 'store'])
     ->middleware('throttle:3,1')
     ->name('guest.sktm.store');
+
+
+ Route::get('/cek-status-layanan', [CekStatusLayananController::class, 'index'])
+    ->name('guest.cek-status-layanan');
+
+Route::post('/cek-status-layanan', [CekStatusLayananController::class, 'check'])
+    ->name('guest.cek-status-layanan.check');

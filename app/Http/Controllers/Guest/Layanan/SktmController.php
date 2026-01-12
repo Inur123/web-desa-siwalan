@@ -11,13 +11,11 @@ use App\Http\Controllers\Controller;
 
 class SktmController extends Controller
 {
-    // Tampilkan form pengajuan SKTM
     public function index()
     {
         return view('guest.layanan.sktm');
     }
 
-    // Simpan pengajuan SKTM
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -30,9 +28,9 @@ class SktmController extends Controller
             'no_hp' => 'required|string|min:10|max:15|regex:/^[0-9]+$/',
             'nama_anak' => 'nullable|string|min:3|max:255|regex:/^[a-zA-Z\s]+$/',
             'keperluan' => 'required|string|min:3|max:255',
-            'kk' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
-            'ktp' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
-            'pengantar_rt' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
+            'kk' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048',
+            'ktp' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048',
+            'pengantar_rt' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048',
         ], [
             'nama.required' => 'Nama lengkap wajib diisi',
             'nama.min' => 'Nama minimal 3 karakter',
@@ -56,17 +54,19 @@ class SktmController extends Controller
             'nama_anak.regex' => 'Nama anak hanya boleh berisi huruf dan spasi',
             'keperluan.required' => 'Keperluan wajib diisi',
             'keperluan.min' => 'Keperluan minimal 3 karakter',
-            'kk.required' => 'File Kartu Keluarga wajib diupload',
             'kk.mimes' => 'Kartu Keluarga harus berupa file JPG, PNG, atau PDF',
-            'ktp.required' => 'File KTP wajib diupload',
             'ktp.mimes' => 'KTP harus berupa file JPG, PNG, atau PDF',
-            'pengantar_rt.required' => 'File Pengantar RT wajib diupload',
             'pengantar_rt.mimes' => 'Pengantar RT harus berupa file JPG, PNG, atau PDF',
         ]);
 
+        // UUID
         $validated['uuid'] = Str::uuid();
 
-        // Upload file
+        // Kode Layanan (bukan nomor surat)
+        // Format: SKTM-YYYYMMDD-ABCDE
+        $kodeLayanan = $this->generateKodeLayanan();
+
+        // Upload file (jalan hanya jika ada file)
         if ($request->hasFile('kk')) {
             $validated['kk'] = $request->file('kk')->store('sktm/kk', 'public');
         }
@@ -77,9 +77,9 @@ class SktmController extends Controller
             $validated['pengantar_rt'] = $request->file('pengantar_rt')->store('sktm/pengantar_rt', 'public');
         }
 
-        // Sanitasi input (strip tags untuk keamanan)
         $dataToCreate = [
             'uuid' => $validated['uuid'],
+            'kode_layanan' => $kodeLayanan, // ✅ dipakai untuk cek status
             'nama' => strip_tags($validated['nama']),
             'nik' => strip_tags($validated['nik']),
             'ttl' => $validated['ttl'],
@@ -92,42 +92,52 @@ class SktmController extends Controller
             'kk' => $validated['kk'] ?? null,
             'ktp' => $validated['ktp'] ?? null,
             'pengantar_rt' => $validated['pengantar_rt'] ?? null,
+            // status default dari migration: 'baru'
         ];
 
         $sktm = Sktm::create($dataToCreate);
 
-        // Kirim notifikasi WhatsApp
         $this->sendWhatsAppNotification($sktm);
 
-        return redirect()->back()->with('success', 'Pengajuan SKTM berhasil dikirim! Notifikasi telah dikirim ke WhatsApp Anda.');
+        return redirect()->back()->with(
+            'success',
+            "Pengajuan SKTM berhasil dikirim! Kode Layanan Anda: {$sktm->kode_layanan}. Notifikasi telah dikirim ke WhatsApp Anda."
+        );
     }
 
     /**
-     * Kirim notifikasi WhatsApp ke pemohon dan admin
+     * Generate kode layanan unik.
+     * Pastikan kolom kode_layanan di DB dibuat UNIQUE.
      */
+    private function generateKodeLayanan(): string
+    {
+        do {
+            $kode = 'SKTM-' . now()->format('Ymd') . '-' . strtoupper(Str::random(5));
+        } while (Sktm::where('kode_layanan', $kode)->exists());
+
+        return $kode;
+    }
+
     private function sendWhatsAppNotification($sktm)
     {
         try {
             $fontte = new FontteService();
-
-            // Kirim ke pemohon
             $fontte->sendMessage($sktm->no_hp, $this->buildPesanUser($sktm));
-
-            // Kirim ke admin
             $fontte->sendToAdmin($this->buildPesanAdmin($sktm));
         } catch (\Exception $e) {
             Log::error('Gagal mengirim notifikasi WhatsApp: ' . $e->getMessage());
         }
     }
 
-    /**
-     * Buat pesan WhatsApp untuk pemohon
-     */
     private function buildPesanUser($sktm)
     {
         $pesan = "🔔 *NOTIFIKASI PENGAJUAN SKTM*\n\n";
         $pesan .= "Yth. Bapak/Ibu *{$sktm->nama}*,\n\n";
         $pesan .= "Pengajuan SKTM Anda telah *BERHASIL DITERIMA* oleh sistem.\n\n";
+
+        $pesan .= "🔑 *Kode Layanan:* *{$sktm->kode_layanan}*\n";
+        $pesan .= "Simpan kode ini untuk *cek status pengajuan*.\n\n";
+
         $pesan .= "📋 *Detail Pengajuan:*\n";
         $pesan .= "• Nama: {$sktm->nama}\n";
         $pesan .= "• NIK: {$sktm->nik}\n";
@@ -146,13 +156,13 @@ class SktmController extends Controller
         return $pesan;
     }
 
-    /**
-     * Buat pesan WhatsApp untuk admin
-     */
     private function buildPesanAdmin($sktm)
     {
         $pesan = "🚨 *PENGAJUAN SKTM BARU*\n\n";
         $pesan .= "Ada pengajuan SKTM baru dari warga yang perlu segera ditindaklanjuti.\n\n";
+
+        $pesan .= "🔑 *Kode Layanan:* {$sktm->kode_layanan}\n\n";
+
         $pesan .= "👤 *Data Pemohon:*\n";
         $pesan .= "• Nama: {$sktm->nama}\n";
         $pesan .= "• NIK: {$sktm->nik}\n";
