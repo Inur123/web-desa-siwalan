@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Crypt;
 
-class Sktm extends Model
+class SuratKehilangan extends Model
 {
     use HasFactory;
 
@@ -15,29 +15,32 @@ class Sktm extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-    'uuid',
-    'kode_layanan',
-    'nama',
-    'tempat_lahir',
-    'ttl',
-    'jenis_kelamin',
-    'kewarganegaraan',
-    'pendidikan',
-    'pekerjaan',
-    'status_perkawinan',
-    'nik',
-    'agama',
-    'alamat',
-    'no_hp',
-    'keperluan',
-    'kk',
-    'ktp',
-    'pengantar_rt',
-    'status',
-];
+        'uuid',
+        'kode_layanan',
+        'nama',
+        'tempat_lahir',
+        'ttl',
+        'nik',
+        'kewarganegaraan',
+        'agama',
+        'pekerjaan',
+        'status_perkawinan',
+        'alamat',
+        'no_hp',
+        'barang_hilang',
+        'keterangan',
+        'tanggal_hilang',
+        'waktu_hilang',
+        'tempat_hilang',
+        'kk',
+        'ktp',
+        'pengantar_rt',
+        'status',
+    ];
 
     protected $casts = [
         'ttl' => 'date',
+        'tanggal_hilang' => 'date',
     ];
 
     // Enkripsi data saat menyimpan
@@ -46,14 +49,34 @@ class Sktm extends Model
         $this->attributes['nama'] = Crypt::encryptString($value);
     }
 
+    public function setTempatLahirAttribute($value)
+    {
+        $this->attributes['tempat_lahir'] = Crypt::encryptString($value);
+    }
+
     public function setNikAttribute($value)
     {
         $this->attributes['nik'] = Crypt::encryptString($value);
     }
 
-    public function setTempatLahirAttribute($value)
+    public function setKewarganegaraanAttribute($value)
     {
-        $this->attributes['tempat_lahir'] = Crypt::encryptString($value);
+        $this->attributes['kewarganegaraan'] = $value ? Crypt::encryptString($value) : null;
+    }
+
+    public function setAgamaAttribute($value)
+    {
+        $this->attributes['agama'] = $value ? Crypt::encryptString($value) : null;
+    }
+
+    public function setPekerjaanAttribute($value)
+    {
+        $this->attributes['pekerjaan'] = $value ? Crypt::encryptString($value) : null;
+    }
+
+    public function setStatusPerkawinanAttribute($value)
+    {
+        $this->attributes['status_perkawinan'] = $value ? Crypt::encryptString($value) : null;
     }
 
     public function setAlamatAttribute($value)
@@ -66,39 +89,24 @@ class Sktm extends Model
         $this->attributes['no_hp'] = Crypt::encryptString($value);
     }
 
-    public function setStatusPerkawinanAttribute($value)
+    public function setBarangHilangAttribute($value)
     {
-        $this->attributes['status_perkawinan'] = $value ? Crypt::encryptString($value) : null;
+        $this->attributes['barang_hilang'] = Crypt::encryptString($value);
     }
 
-    public function setJenisKelaminAttribute($value)
+    public function setKeteranganAttribute($value)
     {
-        $this->attributes['jenis_kelamin'] = $value ? Crypt::encryptString($value) : null;
+        $this->attributes['keterangan'] = Crypt::encryptString($value);
     }
 
-    public function setKewarganegaraanAttribute($value)
+    public function setWaktuHilangAttribute($value)
     {
-        $this->attributes['kewarganegaraan'] = $value ? Crypt::encryptString($value) : null;
+        $this->attributes['waktu_hilang'] = $value ? Crypt::encryptString($value) : null;
     }
 
-    public function setPendidikanAttribute($value)
+    public function setTempatHilangAttribute($value)
     {
-        $this->attributes['pendidikan'] = $value ? Crypt::encryptString($value) : null;
-    }
-
-    public function setPekerjaanAttribute($value)
-    {
-        $this->attributes['pekerjaan'] = $value ? Crypt::encryptString($value) : null;
-    }
-
-    public function setAgamaAttribute($value)
-    {
-        $this->attributes['agama'] = $value ? Crypt::encryptString($value) : null;
-    }
-
-    public function setKeperluanAttribute($value)
-    {
-        $this->attributes['keperluan'] = Crypt::encryptString($value);
+        $this->attributes['tempat_hilang'] = $value ? Crypt::encryptString($value) : null;
     }
 
     public function setKkAttribute($value)
@@ -126,15 +134,6 @@ class Sktm extends Model
         }
     }
 
-    public function getNikAttribute($value)
-    {
-        try {
-            return $value ? Crypt::decryptString($value) : null;
-        } catch (\Exception $e) {
-            return $value;
-        }
-    }
-
     public function getTempatLahirAttribute($value)
     {
         try {
@@ -144,32 +143,7 @@ class Sktm extends Model
         }
     }
 
-    public function getAlamatAttribute($value)
-    {
-        try {
-            return $value ? Crypt::decryptString($value) : null;
-        } catch (\Exception $e) {
-            return $value;
-        }
-    }
-    public function getNoHpAttribute($value)
-    {
-        try {
-            return Crypt::decryptString($value);
-        } catch (\Exception $e) {
-            return $value;
-        }
-    }
-    public function getStatusPerkawinanAttribute($value)
-    {
-        try {
-            return $value ? Crypt::decryptString($value) : null;
-        } catch (\Exception $e) {
-            return $value;
-        }
-    }
-
-    public function getJenisKelaminAttribute($value)
+    public function getNikAttribute($value)
     {
         try {
             return $value ? Crypt::decryptString($value) : null;
@@ -187,7 +161,7 @@ class Sktm extends Model
         }
     }
 
-    public function getPendidikanAttribute($value)
+    public function getAgamaAttribute($value)
     {
         try {
             return $value ? Crypt::decryptString($value) : null;
@@ -205,7 +179,7 @@ class Sktm extends Model
         }
     }
 
-    public function getAgamaAttribute($value)
+    public function getStatusPerkawinanAttribute($value)
     {
         try {
             return $value ? Crypt::decryptString($value) : null;
@@ -214,7 +188,52 @@ class Sktm extends Model
         }
     }
 
-    public function getKeperluanAttribute($value)
+    public function getAlamatAttribute($value)
+    {
+        try {
+            return $value ? Crypt::decryptString($value) : null;
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
+
+    public function getNoHpAttribute($value)
+    {
+        try {
+            return $value ? Crypt::decryptString($value) : null;
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
+
+    public function getBarangHilangAttribute($value)
+    {
+        try {
+            return $value ? Crypt::decryptString($value) : null;
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
+
+    public function getKeteranganAttribute($value)
+    {
+        try {
+            return $value ? Crypt::decryptString($value) : null;
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
+
+    public function getWaktuHilangAttribute($value)
+    {
+        try {
+            return $value ? Crypt::decryptString($value) : null;
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
+
+    public function getTempatHilangAttribute($value)
     {
         try {
             return $value ? Crypt::decryptString($value) : null;

@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\Settings\TemplateSuratController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\Layanan\SktmController as AdminSktmController;
 use App\Http\Controllers\Guest\Layanan\SktmController as GuestSktmController;
+use App\Http\Controllers\Admin\Layanan\SuratKehilanganController as AdminSuratKehilanganController;
+use App\Http\Controllers\Guest\Layanan\SuratKehilanganController as GuestSuratKehilanganController;
 use App\Http\Controllers\Admin\PengaduanController as AdminPengaduanController;
 
 // Authentication Routes
@@ -40,6 +42,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/{sktm}/cetak', [AdminSktmController::class, 'cetak'])->name('cetak');
         Route::patch('/{sktm}/status', [AdminSktmController::class, 'updateStatus'])->name('updateStatus');
         Route::delete('/{sktm}', [AdminSktmController::class, 'destroy'])->name('destroy');
+    });
+
+    // Admin Surat Kehilangan Routes
+    Route::prefix('admin/surat-kehilangan')->name('admin.surat-kehilangan.')->group(function () {
+        Route::get('/', [AdminSuratKehilanganController::class, 'index'])->name('index');
+        Route::get('/{suratKehilangan}', [AdminSuratKehilanganController::class, 'show'])->name('show');
+        Route::get('/{suratKehilangan}/cetak', [AdminSuratKehilanganController::class, 'cetak'])->name('cetak');
+        Route::patch('/{suratKehilangan}/status', [AdminSuratKehilanganController::class, 'updateStatus'])->name('updateStatus');
+        Route::delete('/{suratKehilangan}', [AdminSuratKehilanganController::class, 'destroy'])->name('destroy');
     });
 
     // Admin Settings Routes
@@ -75,6 +86,12 @@ Route::get('/layanan/sktm', [GuestSktmController::class, 'index'])->name('guest.
 Route::post('/layanan/sktm/kirim', [GuestSktmController::class, 'store'])
     ->middleware('throttle:3,1')
     ->name('guest.sktm.store');
+
+// Surat Kehilangan Routes (No authentication required but with rate limiting)
+Route::get('/layanan/surat-kehilangan', [GuestSuratKehilanganController::class, 'index'])->name('guest.surat-kehilangan');
+Route::post('/layanan/surat-kehilangan/kirim', [GuestSuratKehilanganController::class, 'store'])
+    ->middleware('throttle:3,1')
+    ->name('guest.surat-kehilangan.store');
 
 
  Route::get('/cek-status-layanan', [CekStatusLayananController::class, 'index'])

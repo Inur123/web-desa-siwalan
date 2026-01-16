@@ -25,23 +25,38 @@
                 </div>
             </a>
 
-            <!-- Service 2: SKTM & Administrasi -->
+            <!-- Service 2: SKTM -->
             <a href="{{ route('guest.sktm') }}" class="service-card bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-lg">
                 <div class="text-5xl mb-4 text-purple-600"><i class="fas fa-id-card"></i></div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">SKTM & Administrasi</h3>
-                <p class="text-gray-600 mb-6">Proses cepat untuk surat keterangan tak mampu dan berbagai layanan administrasi kependudukan lainnya.</p>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">SKTM</h3>
+                <p class="text-gray-600 mb-6">Proses cepat untuk surat keterangan tidak mampu untuk keperluan beasiswa, bantuan sosial, dan lainnya.</p>
                 <div class="space-y-2 text-sm text-gray-700">
                     <p>• Surat Keterangan Tidak Mampu</p>
-                    <p>• Perubahan Data Penduduk</p>
-                    <p>• Administrasi Kependudukan</p>
+                    <p>• Untuk Beasiswa</p>
+                    <p>• Bantuan Sosial</p>
                 </div>
                 <div class="mt-6 text-green-600 font-semibold hover:text-green-700">
                     Buka Layanan →
                 </div>
             </a>
 
-            <!-- Service 3: Pengaduan & Masukan -->
-            <a href="pengaduan.html" class="service-card bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-lg">
+            <!-- Service 3: Surat Kehilangan -->
+            <a href="{{ route('guest.surat-kehilangan') }}" class="service-card bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-lg">
+                <div class="text-5xl mb-4 text-red-600"><i class="fas fa-exclamation-triangle"></i></div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Surat Kehilangan</h3>
+                <p class="text-gray-600 mb-6">Pengurusan surat keterangan kehilangan dokumen penting seperti KTP, SIM, Ijazah, dan dokumen lainnya.</p>
+                <div class="space-y-2 text-sm text-gray-700">
+                    <p>• Kehilangan KTP</p>
+                    <p>• Kehilangan SIM</p>
+                    <p>• Kehilangan Dokumen Penting</p>
+                </div>
+                <div class="mt-6 text-green-600 font-semibold hover:text-green-700">
+                    Buka Layanan →
+                </div>
+            </a>
+
+            <!-- Service 4: Pengaduan & Masukan -->
+            <a href="{{ route('guest.pengaduan') }}" class="service-card bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-lg">
                 <div class="text-5xl mb-4 text-yellow-600"><i class="fas fa-comments"></i></div>
                 <h3 class="text-2xl font-bold text-gray-900 mb-3">Pengaduan & Masukan</h3>
                 <p class="text-gray-600 mb-6">Sampaikan keluhan atau saran untuk perbaikan pelayanan desa dengan mudah dan cepat.</p>

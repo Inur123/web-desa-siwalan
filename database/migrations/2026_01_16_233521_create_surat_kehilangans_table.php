@@ -11,22 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sktms', function (Blueprint $table) {
+        Schema::create('surat_kehilangans', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->string('kode_layanan')->unique();
             $table->text('nama'); // Changed to TEXT for encryption
             $table->text('tempat_lahir'); // Changed to TEXT for encryption
             $table->date('ttl');
-            $table->text('jenis_kelamin')->nullable(); // Changed to TEXT for encryption
+            $table->text('nik'); // Changed to TEXT for encryption
             $table->text('kewarganegaraan')->nullable(); // Changed to TEXT for encryption
-            $table->text('pendidikan')->nullable(); // Changed to TEXT for encryption
+            $table->text('agama')->nullable(); // Changed to TEXT for encryption
             $table->text('pekerjaan')->nullable(); // Changed to TEXT for encryption
             $table->text('status_perkawinan')->nullable(); // Changed to TEXT for encryption
-            $table->text('nik'); // Changed to TEXT for encryption
-            $table->text('agama')->nullable(); // Changed to TEXT for encryption
             $table->longText('alamat'); // Changed to LONGTEXT for encryption
             $table->text('no_hp'); // Changed to TEXT for encryption
-            $table->text('keperluan'); // Changed to TEXT for encryption
+            $table->text('barang_hilang'); // Changed to TEXT for encryption (contoh: KTP, SIM, dll)
+            $table->longText('keterangan'); // Changed to LONGTEXT for encryption (detail kronologi kehilangan)
+            $table->date('tanggal_hilang');
+            $table->text('waktu_hilang')->nullable(); // Changed to TEXT for encryption (contoh: 10.00 WIB)
+            $table->text('tempat_hilang')->nullable(); // Changed to TEXT for encryption (contoh: Rumah sendiri)
             $table->text('kk')->nullable(); // Changed to TEXT for encryption (file path)
             $table->text('ktp')->nullable(); // Changed to TEXT for encryption (file path)
             $table->text('pengantar_rt')->nullable(); // Changed to TEXT for encryption (file path)
@@ -40,6 +42,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sktms');
+        Schema::dropIfExists('surat_kehilangans');
     }
 };

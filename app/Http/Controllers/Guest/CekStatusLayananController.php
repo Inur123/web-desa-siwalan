@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Sktm;
+use App\Models\SuratKehilangan;
 use Illuminate\Http\Request;
 
 class CekStatusLayananController extends Controller
@@ -28,10 +29,25 @@ class CekStatusLayananController extends Controller
 
         $kode = strtoupper(trim($validated['kode_layanan']));
 
-        // Saat ini cek khusus SKTM
-        $sktm = Sktm::where('kode_layanan', $kode)->first();
+        // Cek berdasarkan prefix kode layanan
+        if (str_starts_with($kode, 'SKTM-')) {
+            $data = Sktm::where('kode_layanan', $kode)->first();
+            $jenis = 'SKTM';
+        } elseif (str_starts_with($kode, 'SKH-')) {
+            $data = SuratKehilangan::where('kode_layanan', $kode)->first();
+            $jenis = 'Surat Kehilangan';
+        } else {
+            // Coba cek keduanya jika prefix tidak jelas
+            $data = Sktm::where('kode_layanan', $kode)->first();
+            if ($data) {
+                $jenis = 'SKTM';
+            } else {
+                $data = SuratKehilangan::where('kode_layanan', $kode)->first();
+                $jenis = $data ? 'Surat Kehilangan' : null;
+            }
+        }
 
-        if (!$sktm) {
+        if (!$data) {
             return view('guest.cek-status-layanan', [
                 'kode' => $kode,
                 'data' => null,
@@ -42,9 +58,9 @@ class CekStatusLayananController extends Controller
 
         return view('guest.cek-status-layanan', [
             'kode' => $kode,
-            'data' => $sktm,
+            'data' => $data,
             'notFound' => false,
-            'jenis' => 'SKTM',
+            'jenis' => $jenis,
         ]);
     }
 }

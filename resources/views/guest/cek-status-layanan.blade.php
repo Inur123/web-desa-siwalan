@@ -28,7 +28,7 @@
                         Kode Layanan <span class="text-red-500">*</span>
                     </label>
                     <input type="text" name="kode_layanan" value="{{ old('kode_layanan', $kode) }}"
-                        placeholder="Contoh: SKTM-20260112-ABCDE"
+                        placeholder="Contoh: SKTM-20260112-ABCDE atau SKH-20260112-ABCDE"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600"
                         required>
                     <p class="text-xs text-gray-600 mt-1">
@@ -105,10 +105,17 @@
                         <p class="text-gray-900 font-bold">{{ $data->nama }}</p>
                     </div>
 
+                    @if($jenis === 'SKTM')
                     <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
                         <p class="text-gray-600 font-semibold">Keperluan</p>
                         <p class="text-gray-900 font-bold">{{ $data->keperluan }}</p>
                     </div>
+                    @else
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <p class="text-gray-600 font-semibold">Barang Hilang</p>
+                        <p class="text-gray-900 font-bold">{{ $data->barang_hilang }}</p>
+                    </div>
+                    @endif
                 </div>
 
                 @if ($data->status === 'ditolak')

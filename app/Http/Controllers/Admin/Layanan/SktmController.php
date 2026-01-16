@@ -95,7 +95,7 @@ class SktmController extends Controller
             'settings' => $settings
         ]);
 
-        $pdf->setPaper('A4', 'portrait');
+        $pdf->setPaper('legal', 'portrait');
 
         // Nama file PDF pakai kode layanan biar rapi
         $fileName = 'SKTM_' . ($sktm->kode_layanan ?? 'KODE') . '_' . date('Ymd') . '.pdf';

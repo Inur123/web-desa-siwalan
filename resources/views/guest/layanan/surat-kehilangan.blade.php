@@ -1,11 +1,11 @@
 @extends('guest.layouts.app')
-@section('title', 'Pengajuan SKTM - Desa Siwalan')
+@section('title', 'Pengajuan Surat Kehilangan - Desa Siwalan')
 
 @section('content')
     <main class="container mx-auto px-4 py-8 max-w-7xl">
         <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-900 mb-3">Form Pengajuan SKTM</h1>
-            <p class="text-gray-600">Silakan lengkapi formulir di bawah ini untuk mengajukan Surat Keterangan Tidak Mampu</p>
+            <h1 class="text-3xl font-bold text-gray-900 mb-3">Form Pengajuan Surat Kehilangan</h1>
+            <p class="text-gray-600">Silakan lengkapi formulir di bawah ini untuk mengajukan Surat Keterangan Kehilangan</p>
         </div>
 
         <div>
@@ -15,7 +15,6 @@
                 </div>
             @endif
 
-            <!-- Menampilkan alert error -->
             @if ($errors->any())
                 <div class="mb-6 p-4 bg-red-100 border border-red-400 text-red-800 rounded-lg">
                     <p class="font-semibold mb-2">Terjadi kesalahan:</p>
@@ -27,7 +26,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('guest.sktm.store') }}" method="POST" enctype="multipart/form-data"
+            <form action="{{ route('guest.surat-kehilangan.store') }}" method="POST" enctype="multipart/form-data"
                 class="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
                 @csrf
 
@@ -70,14 +69,12 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Jenis Kelamin</label>
-                                <select name="jenis_kelamin"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('jenis_kelamin') border-red-500 @enderror">
-                                    <option value="">-- Pilih Jenis Kelamin --</option>
-                                    <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                    <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                                </select>
-                                @error('jenis_kelamin')
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Nomor KTP / NIK <span
+                                        class="text-red-500">*</span></label>
+                                <input type="text" name="nik" value="{{ old('nik') }}" required minlength="16"
+                                    maxlength="16" placeholder="Masukkan NIK 16 digit" pattern="[0-9]{16}"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('nik') border-red-500 @enderror">
+                                @error('nik')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -93,20 +90,18 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Pendidikan</label>
-                                <select name="pendidikan"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('pendidikan') border-red-500 @enderror">
-                                    <option value="">-- Pilih Pendidikan --</option>
-                                    <option value="Tidak Sekolah" {{ old('pendidikan') == 'Tidak Sekolah' ? 'selected' : '' }}>Tidak Sekolah</option>
-                                    <option value="SD" {{ old('pendidikan') == 'SD' ? 'selected' : '' }}>SD</option>
-                                    <option value="SMP" {{ old('pendidikan') == 'SMP' ? 'selected' : '' }}>SMP</option>
-                                    <option value="SMA/SMK" {{ old('pendidikan') == 'SMA/SMK' ? 'selected' : '' }}>SMA/SMK</option>
-                                    <option value="D3" {{ old('pendidikan') == 'D3' ? 'selected' : '' }}>D3</option>
-                                    <option value="S1" {{ old('pendidikan') == 'S1' ? 'selected' : '' }}>S1</option>
-                                    <option value="S2" {{ old('pendidikan') == 'S2' ? 'selected' : '' }}>S2</option>
-                                    <option value="S3" {{ old('pendidikan') == 'S3' ? 'selected' : '' }}>S3</option>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Agama</label>
+                                <select name="agama"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('agama') border-red-500 @enderror">
+                                    <option value="">-- Pilih Agama --</option>
+                                    <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                    <option value="Kristen" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                                    <option value="Katolik" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                                    <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                    <option value="Buddha" {{ old('agama') == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+                                    <option value="Konghucu" {{ old('agama') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
                                 </select>
-                                @error('pendidikan')
+                                @error('agama')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -142,34 +137,6 @@
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
-
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Nomor KTP / NIK <span
-                                        class="text-red-500">*</span></label>
-                                <input type="text" name="nik" value="{{ old('nik') }}" required minlength="16"
-                                    maxlength="16" placeholder="Masukkan NIK 16 digit" pattern="[0-9]{16}"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('nik') border-red-500 @enderror">
-                                @error('nik')
-                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Agama</label>
-                                <select name="agama"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('agama') border-red-500 @enderror">
-                                    <option value="">-- Pilih Agama --</option>
-                                    <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
-                                    <option value="Kristen" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
-                                    <option value="Katolik" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
-                                    <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
-                                    <option value="Buddha" {{ old('agama') == 'Buddha' ? 'selected' : '' }}>Buddha</option>
-                                    <option value="Konghucu" {{ old('agama') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
-                                </select>
-                                @error('agama')
-                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-900 mb-2">No. HP/WhatsApp <span
                                         class="text-red-500">*</span></label>
@@ -182,8 +149,7 @@
                                 @enderror
                             </div>
 
-
-                            <div class="">
+                            <div class="md:col-span-2">
                                 <label class="block text-sm font-semibold text-gray-900 mb-2">Alamat Lengkap <span
                                         class="text-red-500">*</span></label>
                                 <textarea name="alamat" rows="2" required placeholder="Masukkan alamat lengkap" minlength="10" maxlength="500"
@@ -194,13 +160,63 @@
                             </div>
 
 
-                            <div class="md:col-span-3">
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Keperluan <span
+                        </div>
+                    </div>
+
+                    <!-- Data Kehilangan Section -->
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">Data Kehilangan</h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Barang Yang Hilang <span
                                         class="text-red-500">*</span></label>
-                                <input type="text" name="keperluan" value="{{ old('keperluan') }}" required
-                                    minlength="3" maxlength="255" placeholder="Contoh: Beasiswa, Bantuan Sosial, dll"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('keperluan') border-red-500 @enderror">
-                                @error('keperluan')
+                                <input type="text" name="barang_hilang" value="{{ old('barang_hilang') }}" required
+                                    minlength="3" maxlength="255" placeholder="Contoh: KTP, SIM, Ijazah, dll"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('barang_hilang') border-red-500 @enderror">
+                                @error('barang_hilang')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Tanggal Kehilangan <span
+                                        class="text-red-500">*</span></label>
+                                <input type="date" name="tanggal_hilang" value="{{ old('tanggal_hilang') }}" required
+                                    max="{{ date('Y-m-d') }}"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('tanggal_hilang') border-red-500 @enderror">
+                                @error('tanggal_hilang')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Waktu Kehilangan</label>
+                                <input type="text" name="waktu_hilang" value="{{ old('waktu_hilang') }}"
+                                    placeholder="Contoh: 10.00 WIB" maxlength="50"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('waktu_hilang') border-red-500 @enderror">
+                                @error('waktu_hilang')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Tempat Kehilangan</label>
+                                <input type="text" name="tempat_hilang" value="{{ old('tempat_hilang') }}"
+                                    placeholder="Contoh: Rumah sendiri, Pasar, Jalan Raya, dll" maxlength="255"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('tempat_hilang') border-red-500 @enderror">
+                                @error('tempat_hilang')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Keterangan / Kronologi Kehilangan <span
+                                        class="text-red-500">*</span></label>
+                                <textarea name="keterangan" rows="4" required placeholder="Jelaskan secara detail kronologi kehilangan" minlength="10"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('keterangan') border-red-500 @enderror">{{ old('keterangan') }}</textarea>
+                                <p class="text-xs text-gray-600 mt-1">Contoh: Barang tersebut hilang pada hari Senin tanggal 3 Desember 2025. Hilang di Rumah sendiri kejadian Pukul 10.00 WIB</p>
+                                @error('keterangan')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -258,43 +274,11 @@
                     </div>
 
                     <button type="submit"
-                        class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition">
-                        <i class="fas fa-paper-plane"></i> Kirim Pengajuan SKTM
+                        class="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition font-semibold">
+                        <i class="fas fa-paper-plane mr-2"></i> Kirim Pengajuan
                     </button>
                 </div>
             </form>
         </div>
     </main>
-
-    <script>
-        // Client-side validation untuk file upload
-        document.addEventListener('DOMContentLoaded', function() {
-            const fileInputs = document.querySelectorAll('input[type="file"]');
-
-            fileInputs.forEach(input => {
-                input.addEventListener('change', function() {
-                    if (this.files && this.files[0]) {
-                        const file = this.files[0];
-                        const validTypes = ['image/jpeg', 'image/jpg', 'image/png',
-                            'application/pdf'
-                        ];
-
-                        // Cek ukuran file (max 2MB)
-                        if (file.size > 2 * 1024 * 1024) {
-                            alert('Ukuran file maksimal 2MB');
-                            this.value = '';
-                            return;
-                        }
-
-                        // Cek tipe file
-                        if (!validTypes.includes(file.type)) {
-                            alert('Hanya file JPG, PNG, atau PDF yang diperbolehkan');
-                            this.value = '';
-                            return;
-                        }
-                    }
-                });
-            });
-        });
-    </script>
 @endsection
