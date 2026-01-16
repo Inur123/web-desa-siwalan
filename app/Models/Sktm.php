@@ -18,13 +18,16 @@ class Sktm extends Model
     'uuid',
     'kode_layanan',
     'nama',
-    'nik',
-    'ttl',
     'tempat_lahir',
-    'alamat',
+    'ttl',
+    'jenis_kelamin',
+    'kewarganegaraan',
+    'pendidikan',
+    'pekerjaan',
     'status_perkawinan',
-    'no_hp',
-    'nama_anak',
+    'nik',
+    'agama',
+    'alamat',
     'keperluan',
     'kk',
     'ktp',
@@ -59,17 +62,32 @@ class Sktm extends Model
 
     public function setStatusPerkawinanAttribute($value)
     {
-        $this->attributes['status_perkawinan'] = Crypt::encryptString($value);
+        $this->attributes['status_perkawinan'] = $value ? Crypt::encryptString($value) : null;
     }
 
-    public function setNoHpAttribute($value)
+    public function setJenisKelaminAttribute($value)
     {
-        $this->attributes['no_hp'] = Crypt::encryptString($value);
+        $this->attributes['jenis_kelamin'] = $value ? Crypt::encryptString($value) : null;
     }
 
-    public function setNamaAnakAttribute($value)
+    public function setKewarganegaraanAttribute($value)
     {
-        $this->attributes['nama_anak'] = $value ? Crypt::encryptString($value) : null;
+        $this->attributes['kewarganegaraan'] = $value ? Crypt::encryptString($value) : null;
+    }
+
+    public function setPendidikanAttribute($value)
+    {
+        $this->attributes['pendidikan'] = $value ? Crypt::encryptString($value) : null;
+    }
+
+    public function setPekerjaanAttribute($value)
+    {
+        $this->attributes['pekerjaan'] = $value ? Crypt::encryptString($value) : null;
+    }
+
+    public function setAgamaAttribute($value)
+    {
+        $this->attributes['agama'] = $value ? Crypt::encryptString($value) : null;
     }
 
     public function setKeperluanAttribute($value)
@@ -138,7 +156,7 @@ class Sktm extends Model
         }
     }
 
-    public function getNoHpAttribute($value)
+    public function getJenisKelaminAttribute($value)
     {
         try {
             return $value ? Crypt::decryptString($value) : null;
@@ -147,7 +165,34 @@ class Sktm extends Model
         }
     }
 
-    public function getNamaAnakAttribute($value)
+    public function getKewarganegaraanAttribute($value)
+    {
+        try {
+            return $value ? Crypt::decryptString($value) : null;
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
+
+    public function getPendidikanAttribute($value)
+    {
+        try {
+            return $value ? Crypt::decryptString($value) : null;
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
+
+    public function getPekerjaanAttribute($value)
+    {
+        try {
+            return $value ? Crypt::decryptString($value) : null;
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
+
+    public function getAgamaAttribute($value)
     {
         try {
             return $value ? Crypt::decryptString($value) : null;

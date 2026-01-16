@@ -49,21 +49,10 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">NIK <span
-                                        class="text-red-500">*</span></label>
-                                <input type="text" name="nik" value="{{ old('nik') }}" required minlength="16"
-                                    maxlength="16" placeholder="Masukkan NIK 16 digit" pattern="[0-9]{16}"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('nik') border-red-500 @enderror">
-                                @error('nik')
-                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div>
                                 <label class="block text-sm font-semibold text-gray-900 mb-2">Tempat Lahir <span
                                         class="text-red-500">*</span></label>
                                 <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}" required
-                                    placeholder="Contoh: ponorogo" minlength="3" maxlength="255"
+                                    placeholder="Contoh: Ponorogo" minlength="3" maxlength="255"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('tempat_lahir') border-red-500 @enderror">
                                 @error('tempat_lahir')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -81,9 +70,60 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Status Perkawinan <span
-                                        class="text-red-500">*</span></label>
-                                <select name="status_perkawinan" required
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Jenis Kelamin</label>
+                                <select name="jenis_kelamin"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('jenis_kelamin') border-red-500 @enderror">
+                                    <option value="">-- Pilih Jenis Kelamin --</option>
+                                    <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                    <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                </select>
+                                @error('jenis_kelamin')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Kewarganegaraan</label>
+                                <input type="text" name="kewarganegaraan" value="{{ old('kewarganegaraan', 'Indonesia') }}"
+                                    placeholder="Contoh: Indonesia" maxlength="100"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('kewarganegaraan') border-red-500 @enderror">
+                                @error('kewarganegaraan')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Pendidikan</label>
+                                <select name="pendidikan"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('pendidikan') border-red-500 @enderror">
+                                    <option value="">-- Pilih Pendidikan --</option>
+                                    <option value="Tidak Sekolah" {{ old('pendidikan') == 'Tidak Sekolah' ? 'selected' : '' }}>Tidak Sekolah</option>
+                                    <option value="SD" {{ old('pendidikan') == 'SD' ? 'selected' : '' }}>SD</option>
+                                    <option value="SMP" {{ old('pendidikan') == 'SMP' ? 'selected' : '' }}>SMP</option>
+                                    <option value="SMA/SMK" {{ old('pendidikan') == 'SMA/SMK' ? 'selected' : '' }}>SMA/SMK</option>
+                                    <option value="D3" {{ old('pendidikan') == 'D3' ? 'selected' : '' }}>D3</option>
+                                    <option value="S1" {{ old('pendidikan') == 'S1' ? 'selected' : '' }}>S1</option>
+                                    <option value="S2" {{ old('pendidikan') == 'S2' ? 'selected' : '' }}>S2</option>
+                                    <option value="S3" {{ old('pendidikan') == 'S3' ? 'selected' : '' }}>S3</option>
+                                </select>
+                                @error('pendidikan')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Pekerjaan</label>
+                                <input type="text" name="pekerjaan" value="{{ old('pekerjaan') }}"
+                                    placeholder="Contoh: Petani, Buruh, Wiraswasta" maxlength="100"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('pekerjaan') border-red-500 @enderror">
+                                @error('pekerjaan')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Status Perkawinan</label>
+                                <select name="status_perkawinan"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('status_perkawinan') border-red-500 @enderror">
                                     <option value="">-- Pilih Status --</option>
                                     <option value="Belum Kawin"
@@ -104,12 +144,29 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">No. HP <span
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Nomor KTP / NIK <span
                                         class="text-red-500">*</span></label>
-                                <input type="tel" name="no_hp" value="{{ old('no_hp') }}" required
-                                    placeholder="Contoh: 08123456789" minlength="10" maxlength="15" pattern="[0-9]+"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('no_hp') border-red-500 @enderror">
-                                @error('no_hp')
+                                <input type="text" name="nik" value="{{ old('nik') }}" required minlength="16"
+                                    maxlength="16" placeholder="Masukkan NIK 16 digit" pattern="[0-9]{16}"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('nik') border-red-500 @enderror">
+                                @error('nik')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-900 mb-2">Agama</label>
+                                <select name="agama"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('agama') border-red-500 @enderror">
+                                    <option value="">-- Pilih Agama --</option>
+                                    <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                    <option value="Kristen" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                                    <option value="Katolik" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                                    <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                    <option value="Buddha" {{ old('agama') == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+                                    <option value="Konghucu" {{ old('agama') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
+                                </select>
+                                @error('agama')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -124,19 +181,7 @@
                                 @enderror
                             </div>
 
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-900 mb-2">Nama Anak (Jika Ada)</label>
-                                <input type="text" name="nama_anak" value="{{ old('nama_anak') }}"
-                                    placeholder="Kosongkan jika tidak ada" minlength="3" maxlength="255"
-                                    pattern="[a-zA-Z\s]+"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 @error('nama_anak') border-red-500 @enderror">
-                                <p class="text-xs text-gray-600 mt-1">Opsional - Isi jika pengajuan untuk keperluan anak</p>
-                                @error('nama_anak')
-                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div>
+                            <div class="md:col-span-3">
                                 <label class="block text-sm font-semibold text-gray-900 mb-2">Keperluan <span
                                         class="text-red-500">*</span></label>
                                 <input type="text" name="keperluan" value="{{ old('keperluan') }}" required

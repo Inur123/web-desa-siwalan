@@ -33,10 +33,6 @@
                     <p class="font-medium text-gray-800">{{ $sktm->nama }}</p>
                 </div>
                 <div>
-                    <label class="text-sm text-gray-600">NIK</label>
-                    <p class="font-medium text-gray-800">{{ $sktm->nik }}</p>
-                </div>
-                <div>
                     <label class="text-sm text-gray-600">Tempat Lahir</label>
                     <p class="font-medium text-gray-800">{{ $sktm->tempat_lahir }}</p>
                 </div>
@@ -44,25 +40,51 @@
                     <label class="text-sm text-gray-600">Tanggal Lahir</label>
                     <p class="font-medium text-gray-800">{{ $sktm->ttl->format('d-m-Y') }}</p>
                 </div>
+                @if ($sktm->jenis_kelamin)
+                <div>
+                    <label class="text-sm text-gray-600">Jenis Kelamin</label>
+                    <p class="font-medium text-gray-800">{{ $sktm->jenis_kelamin }}</p>
+                </div>
+                @endif
+                @if ($sktm->kewarganegaraan)
+                <div>
+                    <label class="text-sm text-gray-600">Kewarganegaraan</label>
+                    <p class="font-medium text-gray-800">{{ $sktm->kewarganegaraan }}</p>
+                </div>
+                @endif
+                @if ($sktm->pendidikan)
+                <div>
+                    <label class="text-sm text-gray-600">Pendidikan</label>
+                    <p class="font-medium text-gray-800">{{ $sktm->pendidikan }}</p>
+                </div>
+                @endif
+                @if ($sktm->pekerjaan)
+                <div>
+                    <label class="text-sm text-gray-600">Pekerjaan</label>
+                    <p class="font-medium text-gray-800">{{ $sktm->pekerjaan }}</p>
+                </div>
+                @endif
+                @if ($sktm->status_perkawinan)
                 <div>
                     <label class="text-sm text-gray-600">Status Perkawinan</label>
                     <p class="font-medium text-gray-800">{{ $sktm->status_perkawinan }}</p>
                 </div>
+                @endif
                 <div>
-                    <label class="text-sm text-gray-600">No. HP</label>
-                    <p class="font-medium text-gray-800">{{ $sktm->no_hp }}</p>
+                    <label class="text-sm text-gray-600">Nomor KTP / NIK</label>
+                    <p class="font-medium text-gray-800">{{ $sktm->nik }}</p>
                 </div>
+                @if ($sktm->agama)
+                <div>
+                    <label class="text-sm text-gray-600">Agama</label>
+                    <p class="font-medium text-gray-800">{{ $sktm->agama }}</p>
+                </div>
+                @endif
                 <div class="md:col-span-2">
                     <label class="text-sm text-gray-600">Alamat</label>
                     <p class="font-medium text-gray-800">{{ $sktm->alamat }}</p>
                 </div>
-                @if ($sktm->nama_anak)
-                    <div>
-                        <label class="text-sm text-gray-600">Nama Anak</label>
-                        <p class="font-medium text-gray-800">{{ $sktm->nama_anak }}</p>
-                    </div>
-                @endif
-                <div>
+                <div class="md:col-span-2">
                     <label class="text-sm text-gray-600">Keperluan</label>
                     <p class="font-medium text-gray-800">{{ $sktm->keperluan }}</p>
                 </div>

@@ -13,15 +13,18 @@ return new class extends Migration
     {
         Schema::create('sktms', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
-            $table->text('nama'); // Changed to TEXT for encryption
-            $table->text('nik'); // Changed to TEXT for encryption
-            $table->date('ttl');
             $table->string('kode_layanan')->unique();
+            $table->text('nama'); // Changed to TEXT for encryption
             $table->text('tempat_lahir'); // Changed to TEXT for encryption
+            $table->date('ttl');
+            $table->text('jenis_kelamin')->nullable(); // Changed to TEXT for encryption
+            $table->text('kewarganegaraan')->nullable(); // Changed to TEXT for encryption
+            $table->text('pendidikan')->nullable(); // Changed to TEXT for encryption
+            $table->text('pekerjaan')->nullable(); // Changed to TEXT for encryption
+            $table->text('status_perkawinan')->nullable(); // Changed to TEXT for encryption
+            $table->text('nik'); // Changed to TEXT for encryption
+            $table->text('agama')->nullable(); // Changed to TEXT for encryption
             $table->longText('alamat'); // Changed to LONGTEXT for encryption
-            $table->text('status_perkawinan'); // Changed to TEXT for encryption
-            $table->text('no_hp'); // Changed to TEXT for encryption
-            $table->text('nama_anak')->nullable(); // Changed to TEXT for encryption
             $table->text('keperluan'); // Changed to TEXT for encryption
             $table->text('kk')->nullable(); // Changed to TEXT for encryption (file path)
             $table->text('ktp')->nullable(); // Changed to TEXT for encryption (file path)
