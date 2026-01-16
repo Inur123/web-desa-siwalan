@@ -37,20 +37,28 @@
             <div>
                 <h4 class="text-white font-semibold mb-4">Media Sosial</h4>
                 <div class="flex gap-4 text-xl">
-                    <a href="#" class="hover:text-blue-500 transition" title="Facebook">
+                    <a href="https://facebook.com/157725697732754" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-blue-500 transition" title="Facebook">
                         <i class="fab fa-facebook"></i>
                     </a>
-                    <a href="#" class="hover:text-sky-400 transition" title="Twitter">
-                        <i class="fab fa-twitter"></i>
+
+                    <a href="https://tiktok.com/@siwalan.desa" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-gray-500 transition" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
                     </a>
-                    <a href="#" class="hover:text-pink-500 transition" title="Instagram">
+
+                    <a href="https://instagram.com/siwalan.desa" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-pink-500 transition" title="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="#" class="hover:text-red-500 transition" title="YouTube">
+
+                    <a href="https://www.youtube.com/@pemdessiwalan" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-red-500 transition" title="YouTube">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
             </div>
+
 
         </div>
 
