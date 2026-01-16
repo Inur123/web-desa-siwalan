@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Desa Siwalan - Website Resmi')</title>
     @vite('resources/css/app.css')
-      <link rel="icon" type="image/png" href="{{ asset('images/logo-desa.png') }}">
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo-desa.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body class="bg-white text-gray-800 font-sans">
+<body class="bg-white text-gray-800 font-sans min-h-screen flex flex-col">
 
     @include('guest.layouts.header')
 
-    @yield('content')
+    {{-- kasih wrapper biar konten dorong footer --}}
+    <main class="flex-1">
+        @yield('content')
+    </main>
 
     @include('guest.layouts.footer')
 
@@ -25,7 +28,6 @@
     </button>
 
     <script>
-        // Scroll to top
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
@@ -44,5 +46,6 @@
     </script>
 
 </body>
+
 
 </html>
