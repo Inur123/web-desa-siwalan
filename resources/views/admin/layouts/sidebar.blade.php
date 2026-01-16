@@ -41,7 +41,7 @@
         <!-- Dropdown Layanan -->
         <div>
             <button onclick="toggleLayananDropdown()"
-                class="group w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 {{ Request::routeIs('admin.sktm.*') || Request::routeIs('admin.surat-kehilangan.*') ? 'bg-gray-800/70 text-white' : 'text-gray-300 hover:bg-gray-800/50 hover:text-white' }}">
+                class="group w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 {{ Request::routeIs('admin.sktm.*') || Request::routeIs('admin.surat-kehilangan.*') || Request::routeIs('admin.surat-keterangan-domisili.*') ? 'bg-gray-800/70 text-white' : 'text-gray-300 hover:bg-gray-800/50 hover:text-white' }}">
                 <div class="flex items-center gap-3">
                     <i class="fas fa-layer-group w-5"></i>
                     <span>Layanan</span>
@@ -49,7 +49,7 @@
                 <i id="layananArrow" class="fas fa-chevron-down transition-transform text-sm"></i>
             </button>
             <div id="layananSubmenu"
-                class="{{ Request::routeIs('admin.sktm.*') || Request::routeIs('admin.surat-kehilangan.*') ? '' : 'hidden' }} ml-4 mt-1 space-y-1 pl-4 border-l-2 border-gray-700">
+                class="{{ Request::routeIs('admin.sktm.*') || Request::routeIs('admin.surat-kehilangan.*') || Request::routeIs('admin.surat-keterangan-domisili.*') ? '' : 'hidden' }} ml-4 mt-1 space-y-1 pl-4 border-l-2 border-gray-700">
                 <a href="{{ route('admin.sktm.index') }}"
                     class="group flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {{ Request::routeIs('admin.sktm.*') ? 'bg-green-600 text-white' : 'text-gray-400 hover:bg-gray-800/50 hover:text-white' }}">
                     <i class="fas fa-file-certificate w-4"></i>
@@ -59,6 +59,11 @@
                     class="group flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {{ Request::routeIs('admin.surat-kehilangan.*') ? 'bg-green-600 text-white' : 'text-gray-400 hover:bg-gray-800/50 hover:text-white' }}">
                     <i class="fas fa-exclamation-triangle w-4"></i>
                     <span>Surat Kehilangan</span>
+                </a>
+                <a href="{{ route('admin.surat-keterangan-domisili.index') }}"
+                    class="group flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {{ Request::routeIs('admin.surat-keterangan-domisili.*') ? 'bg-green-600 text-white' : 'text-gray-400 hover:bg-gray-800/50 hover:text-white' }}">
+                    <i class="fas fa-home w-4"></i>
+                    <span>Surat Keterangan Domisili</span>
                 </a>
             </div>
         </div>

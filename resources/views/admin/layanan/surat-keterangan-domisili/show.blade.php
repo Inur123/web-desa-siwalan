@@ -1,0 +1,213 @@
+@extends('admin.layouts.app')
+@section('title', 'Detail Pengajuan Surat Keterangan Domisili - Admin')
+
+@section('content')
+    <div class="max-w-7xl mx-auto">
+
+        <div class="mb-6">
+            <a href="{{ route('admin.surat-keterangan-domisili.index') }}" class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-arrow-left"></i> Kembali ke Daftar
+            </a>
+        </div>
+
+        <h1 class="text-3xl font-bold mb-6">Detail Pengajuan Surat Keterangan Domisili</h1>
+
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Informasi Pemohon</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-sm text-gray-600">Nama Lengkap</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->nama }}</p>
+                </div>
+                <div>
+                    <label class="text-sm text-gray-600">Tempat Lahir</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->tempat_lahir }}</p>
+                </div>
+                <div>
+                    <label class="text-sm text-gray-600">Tanggal Lahir</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->ttl->format('d-m-Y') }}</p>
+                </div>
+                @if ($suratKeteranganDomisili->jenis_kelamin)
+                <div>
+                    <label class="text-sm text-gray-600">Jenis Kelamin</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->jenis_kelamin }}</p>
+                </div>
+                @endif
+                @if ($suratKeteranganDomisili->kewarganegaraan)
+                <div>
+                    <label class="text-sm text-gray-600">Kewarganegaraan</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->kewarganegaraan }}</p>
+                </div>
+                @endif
+                @if ($suratKeteranganDomisili->pekerjaan)
+                <div>
+                    <label class="text-sm text-gray-600">Pekerjaan</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->pekerjaan }}</p>
+                </div>
+                @endif
+                @if ($suratKeteranganDomisili->status_perkawinan)
+                <div>
+                    <label class="text-sm text-gray-600">Status Perkawinan</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->status_perkawinan }}</p>
+                </div>
+                @endif
+                <div>
+                    <label class="text-sm text-gray-600">Nomor KTP / NIK</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->nik }}</p>
+                </div>
+                @if ($suratKeteranganDomisili->agama)
+                <div>
+                    <label class="text-sm text-gray-600">Agama</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->agama }}</p>
+                </div>
+                @endif
+                <div class="md:col-span-2">
+                    <label class="text-sm text-gray-600">Alamat</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->alamat }}</p>
+                </div>
+                <div>
+                    <label class="text-sm text-gray-600">Nomor HP</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->no_hp }}</p>
+                </div>
+                @if ($suratKeteranganDomisili->rt)
+                <div>
+                    <label class="text-sm text-gray-600">RT</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->rt }}</p>
+                </div>
+                @endif
+                @if ($suratKeteranganDomisili->rw)
+                <div>
+                    <label class="text-sm text-gray-600">RW</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->rw }}</p>
+                </div>
+                @endif
+                @if ($suratKeteranganDomisili->dukuh)
+                <div>
+                    <label class="text-sm text-gray-600">Dukuh</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->dukuh }}</p>
+                </div>
+                @endif
+                @if ($suratKeteranganDomisili->tahun_domisili)
+                <div>
+                    <label class="text-sm text-gray-600">Tahun Domisili</label>
+                    <p class="font-medium text-gray-800">{{ $suratKeteranganDomisili->tahun_domisili }}</p>
+                </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Dokumen Pendukung</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                @if ($suratKeteranganDomisili->kk)
+                    <div>
+                        <label class="text-sm text-gray-600 block mb-2">Kartu Keluarga</label>
+                        <a href="{{ asset('storage/' . $suratKeteranganDomisili->kk) }}" target="_blank"
+                            class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm">
+                            <i class="fas fa-file-image"></i> Lihat KK
+                        </a>
+                    </div>
+                @endif
+
+                @if ($suratKeteranganDomisili->ktp)
+                    <div>
+                        <label class="text-sm text-gray-600 block mb-2">KTP</label>
+                        <a href="{{ asset('storage/' . $suratKeteranganDomisili->ktp) }}" target="_blank"
+                            class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm">
+                            <i class="fas fa-file-image"></i> Lihat KTP
+                        </a>
+                    </div>
+                @endif
+
+                @if ($suratKeteranganDomisili->pengantar_rt)
+                    <div>
+                        <label class="text-sm text-gray-600 block mb-2">Pengantar RT</label>
+                        <a href="{{ asset('storage/' . $suratKeteranganDomisili->pengantar_rt) }}" target="_blank"
+                            class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm">
+                            <i class="fas fa-file-image"></i> Lihat Pengantar
+                        </a>
+                    </div>
+                @endif
+            </div>
+
+            @if (!$suratKeteranganDomisili->kk && !$suratKeteranganDomisili->ktp && !$suratKeteranganDomisili->pengantar_rt)
+                <p class="text-gray-500 text-sm">Tidak ada dokumen yang dilampirkan</p>
+            @endif
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Status Pengajuan</h2>
+
+            <div class="mb-4">
+                <label class="text-sm text-gray-600">Status Saat Ini</label>
+                <p class="text-lg font-medium">
+                    @if ($suratKeteranganDomisili->status === 'baru')
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full">Baru</span>
+                    @elseif($suratKeteranganDomisili->status === 'diterima')
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full">Diterima</span>
+                    @else
+                        <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full">Ditolak</span>
+                    @endif
+                </p>
+            </div>
+
+            @if ($suratKeteranganDomisili->status === 'baru')
+                <form action="{{ route('admin.surat-keterangan-domisili.updateStatus', $suratKeteranganDomisili->uuid) }}" method="POST" class="mt-6">
+                    @csrf
+                    @method('PATCH')
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Ubah Status</label>
+                        <select name="status"
+                            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500">
+                            <option value="diterima" {{ $suratKeteranganDomisili->status === 'diterima' ? 'selected' : '' }}>Diterima</option>
+                            <option value="ditolak" {{ $suratKeteranganDomisili->status === 'ditolak' ? 'selected' : '' }}>Ditolak</option>
+                        </select>
+                    </div>
+
+                    <button type="submit"
+                        class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
+                        <i class="fas fa-save"></i> Update Status
+                    </button>
+                </form>
+            @elseif($suratKeteranganDomisili->status === 'diterima')
+                <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p class="text-sm text-gray-600 mb-4">
+                        <i class="fas fa-check-circle text-green-500"></i>
+                        Pengajuan telah <strong>diterima</strong>. Anda dapat mencetak surat Keterangan Domisili sekarang.
+                    </p>
+                    <a href="{{ route('admin.surat-keterangan-domisili.cetak', $suratKeteranganDomisili->uuid) }}" target="_blank"
+                        class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                        <i class="fas fa-file-pdf"></i> Lihat & Cetak Surat PDF
+                    </a>
+                </div>
+            @else
+                <div class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                    <p class="text-sm text-gray-600">
+                        <i class="fas fa-lock text-gray-400"></i>
+                        Status tidak dapat diubah karena pengajuan sudah <strong>{{ $suratKeteranganDomisili->status }}</strong>.
+                        Status final tidak dapat diubah kembali.
+                    </p>
+                </div>
+            @endif
+        </div>
+
+        <div class="mt-6 text-sm text-gray-600">
+            <p>Tanggal Pengajuan: <strong>{{ $suratKeteranganDomisili->created_at->format('d M Y, H:i') }}</strong></p>
+        </div>
+    </div>
+@endsection

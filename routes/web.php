@@ -18,6 +18,8 @@ use App\Http\Controllers\Admin\Layanan\SktmController as AdminSktmController;
 use App\Http\Controllers\Guest\Layanan\SktmController as GuestSktmController;
 use App\Http\Controllers\Admin\Layanan\SuratKehilanganController as AdminSuratKehilanganController;
 use App\Http\Controllers\Guest\Layanan\SuratKehilanganController as GuestSuratKehilanganController;
+use App\Http\Controllers\Admin\Layanan\SuratKeteranganDomisiliController as AdminSuratDomisiliController;
+use App\Http\Controllers\Guest\Layanan\SuratKeteranganDomisiliController as GuestSuratDomisiliController;
 use App\Http\Controllers\Admin\PengaduanController as AdminPengaduanController;
 
 // Authentication Routes
@@ -51,6 +53,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/{suratKehilangan}/cetak', [AdminSuratKehilanganController::class, 'cetak'])->name('cetak');
         Route::patch('/{suratKehilangan}/status', [AdminSuratKehilanganController::class, 'updateStatus'])->name('updateStatus');
         Route::delete('/{suratKehilangan}', [AdminSuratKehilanganController::class, 'destroy'])->name('destroy');
+    });
+
+    // Admin Surat Keterangan Domisili Routes
+    Route::prefix('admin/surat-keterangan-domisili')->name('admin.surat-keterangan-domisili.')->group(function () {
+        Route::get('/', [AdminSuratDomisiliController::class, 'index'])->name('index');
+        Route::get('/{suratKeteranganDomisili}', [AdminSuratDomisiliController::class, 'show'])->name('show');
+        Route::get('/{suratKeteranganDomisili}/cetak', [AdminSuratDomisiliController::class, 'cetak'])->name('cetak');
+        Route::patch('/{suratKeteranganDomisili}/status', [AdminSuratDomisiliController::class, 'updateStatus'])->name('updateStatus');
+        Route::delete('/{suratKeteranganDomisili}', [AdminSuratDomisiliController::class, 'destroy'])->name('destroy');
     });
 
     // Admin Settings Routes
@@ -92,6 +103,12 @@ Route::get('/layanan/surat-kehilangan', [GuestSuratKehilanganController::class, 
 Route::post('/layanan/surat-kehilangan/kirim', [GuestSuratKehilanganController::class, 'store'])
     ->middleware('throttle:3,1')
     ->name('guest.surat-kehilangan.store');
+
+// Surat Keterangan Domisili Routes (No authentication required but with rate limiting)
+Route::get('/layanan/surat-keterangan-domisili', [GuestSuratDomisiliController::class, 'index'])->name('guest.surat-keterangan-domisili');
+Route::post('/layanan/surat-keterangan-domisili/kirim', [GuestSuratDomisiliController::class, 'store'])
+    ->middleware('throttle:3,1')
+    ->name('guest.surat-keterangan-domisili.store');
 
 
  Route::get('/cek-status-layanan', [CekStatusLayananController::class, 'index'])

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guest;
 use App\Http\Controllers\Controller;
 use App\Models\Sktm;
 use App\Models\SuratKehilangan;
+use App\Models\SuratKeteranganDomisili;
 use Illuminate\Http\Request;
 
 class CekStatusLayananController extends Controller
@@ -36,14 +37,22 @@ class CekStatusLayananController extends Controller
         } elseif (str_starts_with($kode, 'SKH-')) {
             $data = SuratKehilangan::where('kode_layanan', $kode)->first();
             $jenis = 'Surat Kehilangan';
+        } elseif (str_starts_with($kode, 'SKD-')) {
+            $data = SuratKeteranganDomisili::where('kode_layanan', $kode)->first();
+            $jenis = 'Surat Keterangan Domisili';
         } else {
-            // Coba cek keduanya jika prefix tidak jelas
+            // Coba cek ketiganya jika prefix tidak jelas
             $data = Sktm::where('kode_layanan', $kode)->first();
             if ($data) {
                 $jenis = 'SKTM';
             } else {
                 $data = SuratKehilangan::where('kode_layanan', $kode)->first();
-                $jenis = $data ? 'Surat Kehilangan' : null;
+                if ($data) {
+                    $jenis = 'Surat Kehilangan';
+                } else {
+                    $data = SuratKeteranganDomisili::where('kode_layanan', $kode)->first();
+                    $jenis = $data ? 'Surat Keterangan Domisili' : null;
+                }
             }
         }
 
