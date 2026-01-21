@@ -64,7 +64,7 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-700">
-                                {{ $item->created_at->format('d M Y') }}
+                                {{ $item->created_at->translatedFormat('d M Y') }}
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex justify-center items-center gap-2">

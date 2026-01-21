@@ -38,7 +38,7 @@
                 </div>
                 <div>
                     <label class="text-sm text-gray-600">Tanggal Lahir</label>
-                    <p class="font-medium text-gray-800">{{ $suratKehilangan->ttl->format('d-m-Y') }}</p>
+                    <p class="font-medium text-gray-800">{{ $suratKehilangan->ttl->translatedFormat('d-m-Y') }}</p>
                 </div>
                 <div>
                     <label class="text-sm text-gray-600">Nomor KTP / NIK</label>
@@ -89,7 +89,7 @@
                 </div>
                 <div>
                     <label class="text-sm text-gray-600">Tanggal Kehilangan</label>
-                    <p class="font-medium text-gray-800">{{ $suratKehilangan->tanggal_hilang->format('d-m-Y') }}</p>
+                    <p class="font-medium text-gray-800">{{ $suratKehilangan->tanggal_hilang->translatedFormat('d-m-Y') }}</p>
                 </div>
                 @if ($suratKehilangan->waktu_hilang)
                 <div>

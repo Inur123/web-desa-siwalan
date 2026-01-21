@@ -45,7 +45,7 @@
 
                             <td class="px-6 py-4 text-sm text-gray-700">{{ $post->kategori }}</td>
                             <td class="px-6 py-4 text-sm text-gray-700">
-                                {{ \Carbon\Carbon::parse($post->tanggal)->format('d-m-Y') }}</td>
+                                {{ \Carbon\Carbon::parse($post->tanggal)->translatedFormat('d-m-Y') }}</td>
                             <td class="px-6 py-4">
                                 @if ($post->thumbnail)
                                     <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="Thumbnail"

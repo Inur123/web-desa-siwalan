@@ -38,7 +38,7 @@
                 </div>
                 <div>
                     <label class="text-sm text-gray-600">Tanggal Lahir</label>
-                    <p class="font-medium text-gray-800">{{ $sktm->ttl->format('d-m-Y') }}</p>
+                    <p class="font-medium text-gray-800">{{ $sktm->ttl->translatedFormat('d-m-Y') }}</p>
                 </div>
                 @if ($sktm->jenis_kelamin)
                 <div>
@@ -193,7 +193,7 @@
         </div>
 
         <div class="mt-6 text-sm text-gray-600">
-            <p>Tanggal Pengajuan: <strong>{{ $sktm->created_at->format('d M Y, H:i') }}</strong></p>
+            <p>Tanggal Pengajuan: <strong>{{ $sktm->created_at->translatedFormat('d M Y, H:i') }}</strong></p>
         </div>
     </div>
 @endsection

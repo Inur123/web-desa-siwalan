@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Guest\Layanan;
 
-use App\Models\SuratKeteranganDomisili;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Services\FontteService;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\SuratKeteranganDomisili;
 
 class SuratKeteranganDomisiliController extends Controller
 {
@@ -138,7 +139,7 @@ class SuratKeteranganDomisiliController extends Controller
         if ($suratDomisili->rt || $suratDomisili->rw) {
             $pesan .= "• RT/RW: " . ($suratDomisili->rt ?? '-') . "/" . ($suratDomisili->rw ?? '-') . "\n";
         }
-        $pesan .= "• Tanggal Pengajuan: " . now()->format('d/m/Y H:i') . "\n";
+        $pesan .= "• Tanggal Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . "\n";
         $pesan .= "• Status: *Menunggu Verifikasi*\n\n";
         $pesan .= "⏳ Pengajuan Anda akan segera diproses oleh petugas desa.\n\n";
         $pesan .= "Terima kasih telah menggunakan layanan Desa Siwalan.\n\n";
@@ -155,7 +156,7 @@ class SuratKeteranganDomisiliController extends Controller
         $pesan .= "• Nama: {$suratDomisili->nama}\n";
         $pesan .= "• NIK: {$suratDomisili->nik}\n";
         $pesan .= "• No. HP: {$suratDomisili->no_hp}\n";
-        $pesan .= "• Tempat/Tgl Lahir: {$suratDomisili->tempat_lahir}, " . date('d/m/Y', strtotime($suratDomisili->ttl)) . "\n";
+        $pesan .= "• Tempat/Tgl Lahir: {$suratDomisili->tempat_lahir}, " . Carbon::parse($suratDomisili->ttl)->translatedFormat('d/m/Y') . "\n";
         $pesan .= "• Alamat: {$suratDomisili->alamat}\n";
         if ($suratDomisili->rt || $suratDomisili->rw) {
             $pesan .= "• RT/RW: " . ($suratDomisili->rt ?? '-') . "/" . ($suratDomisili->rw ?? '-') . "\n";
@@ -163,7 +164,7 @@ class SuratKeteranganDomisiliController extends Controller
         if ($suratDomisili->status_perkawinan) {
             $pesan .= "• Status Perkawinan: {$suratDomisili->status_perkawinan}\n";
         }
-        $pesan .= "• Waktu Pengajuan: " . now()->format('d/m/Y H:i') . " WIB\n\n";
+        $pesan .= "• Waktu Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . " WIB\n\n";
         $pesan .= "📌 Silakan login ke dashboard admin untuk memverifikasi dan memproses pengajuan ini.\n\n";
         $pesan .= "_Pesan otomatis dari Sistem Desa Siwalan_";
         return $pesan;

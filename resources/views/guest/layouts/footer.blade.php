@@ -64,10 +64,11 @@
 
         <!-- Copyright -->
         <div class="border-t border-gray-700 pt-8 text-center text-sm">
-            <p>&copy; 2025 Desa Siwalan. Semua hak dilindungi. |
+            <p>&copy; {{ now()->year }} Desa Siwalan. Semua hak dilindungi. |
                 <a href="#" class="hover:text-green-400">Kebijakan Privasi</a> |
                 <a href="#" class="hover:text-green-400">Syarat & Ketentuan</a>
             </p>
         </div>
+
     </div>
 </footer>

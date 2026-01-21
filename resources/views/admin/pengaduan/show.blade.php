@@ -39,7 +39,7 @@
             </div>
             <div>
                 <p class="text-sm text-gray-600">Tanggal Pengaduan</p>
-                <p class="text-gray-800 font-medium">{{ \Carbon\Carbon::parse($pengaduan->tanggal)->format('d-m-Y H:i') }}
+                <p class="text-gray-800 font-medium">{{ \Carbon\Carbon::parse($pengaduan->tanggal)->translatedFormat('d-m-Y H:i') }}
                 </p>
             </div>
         </div>

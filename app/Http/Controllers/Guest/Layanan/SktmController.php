@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Guest\Layanan;
 
+use Carbon\Carbon;
 use App\Models\Sktm;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -153,7 +154,7 @@ class SktmController extends Controller
             $pesan .= "• Nama Anak: {$sktm->nama_anak}\n";
         }
 
-        $pesan .= "• Tanggal Pengajuan: " . now()->format('d/m/Y H:i') . "\n";
+        $pesan .= "• Tanggal Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . "\n";
         $pesan .= "• Status: *Menunggu Verifikasi*\n\n";
         $pesan .= "⏳ Pengajuan Anda akan segera diproses oleh petugas desa.\n\n";
         $pesan .= "Terima kasih telah menggunakan layanan Desa Siwalan.\n\n";
@@ -173,7 +174,7 @@ class SktmController extends Controller
         $pesan .= "• Nama: {$sktm->nama}\n";
         $pesan .= "• NIK: {$sktm->nik}\n";
         $pesan .= "• No. HP: {$sktm->no_hp}\n";
-        $pesan .= "• Tempat/Tgl Lahir: {$sktm->tempat_lahir}, " . date('d/m/Y', strtotime($sktm->ttl)) . "\n";
+        $pesan .= "• Tempat/Tgl Lahir: {$sktm->tempat_lahir}, " . Carbon::parse($sktm->ttl)->translatedFormat('d/m/Y') . "\n";
         $pesan .= "• Alamat: {$sktm->alamat}\n";
         $pesan .= "• Status Perkawinan: {$sktm->status_perkawinan}\n";
 
@@ -182,7 +183,7 @@ class SktmController extends Controller
         }
 
         $pesan .= "• Keperluan: {$sktm->keperluan}\n";
-        $pesan .= "• Waktu Pengajuan: " . now()->format('d/m/Y H:i') . " WIB\n\n";
+        $pesan .= "• Waktu Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . " WIB\n\n";
         $pesan .= "📌 Silakan login ke dashboard admin untuk memverifikasi dan memproses pengajuan ini.\n\n";
         $pesan .= "_Pesan otomatis dari Sistem Desa Siwalan_";
 

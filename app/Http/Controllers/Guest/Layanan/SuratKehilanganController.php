@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Guest\Layanan;
 
-use App\Models\SuratKehilangan;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\SuratKehilangan;
 use App\Services\FontteService;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
@@ -169,8 +170,8 @@ class SuratKehilanganController extends Controller
         $pesan .= "• Nama: {$suratKehilangan->nama}\n";
         $pesan .= "• NIK: {$suratKehilangan->nik}\n";
         $pesan .= "• Barang Hilang: {$suratKehilangan->barang_hilang}\n";
-        $pesan .= "• Tanggal Hilang: " . \Carbon\Carbon::parse($suratKehilangan->tanggal_hilang)->format('d/m/Y') . "\n";
-        $pesan .= "• Tanggal Pengajuan: " . now()->format('d/m/Y H:i') . "\n";
+        $pesan .= "• Tanggal Hilang: " . Carbon::parse($suratKehilangan->tanggal_hilang)->translatedFormat('d/m/Y') . "\n";
+        $pesan .= "• Tanggal Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . "\n";
         $pesan .= "• Status: *Menunggu Verifikasi*\n\n";
         $pesan .= "⏳ Pengajuan Anda akan segera diproses oleh petugas desa.\n\n";
         $pesan .= "Terima kasih telah menggunakan layanan Desa Siwalan.\n\n";
@@ -190,7 +191,7 @@ class SuratKehilanganController extends Controller
         $pesan .= "• Nama: {$suratKehilangan->nama}\n";
         $pesan .= "• NIK: {$suratKehilangan->nik}\n";
         $pesan .= "• No. HP: {$suratKehilangan->no_hp}\n";
-        $pesan .= "• Tempat/Tgl Lahir: {$suratKehilangan->tempat_lahir}, " . \Carbon\Carbon::parse($suratKehilangan->ttl)->format('d/m/Y') . "\n";
+        $pesan .= "• Tempat/Tgl Lahir: {$suratKehilangan->tempat_lahir}, " . \Carbon\Carbon::parse($suratKehilangan->ttl)->translatedFormat('d/m/Y') . "\n";
         $pesan .= "• Alamat: {$suratKehilangan->alamat}\n";
 
         if ($suratKehilangan->status_perkawinan) {
@@ -198,8 +199,8 @@ class SuratKehilanganController extends Controller
         }
 
         $pesan .= "• Barang Hilang: {$suratKehilangan->barang_hilang}\n";
-        $pesan .= "• Tanggal Hilang: " . \Carbon\Carbon::parse($suratKehilangan->tanggal_hilang)->format('d/m/Y') . "\n";
-        $pesan .= "• Waktu Pengajuan: " . now()->format('d/m/Y H:i') . " WIB\n\n";
+        $pesan .= "• Tanggal Hilang: " . Carbon::parse($suratKehilangan->tanggal_hilang)->translatedFormat('d/m/Y') . "\n";
+        $pesan .= "• Waktu Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . " WIB\n\n";
         $pesan .= "📌 Silakan login ke dashboard admin untuk memverifikasi dan memproses pengajuan ini.\n\n";
         $pesan .= "_Pesan otomatis dari Sistem Desa Siwalan_";
 

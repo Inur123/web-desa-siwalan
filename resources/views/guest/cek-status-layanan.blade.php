@@ -97,7 +97,7 @@
 
                     <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
                         <p class="text-gray-600 font-semibold">Tanggal Pengajuan</p>
-                        <p class="text-gray-900 font-bold">{{ $data->created_at?->format('d/m/Y H:i') }} WIB</p>
+                        <p class="text-gray-900 font-bold">{{ $data->created_at?->translatedFormat('d/m/Y H:i') }} WIB</p>
                     </div>
 
                     <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">

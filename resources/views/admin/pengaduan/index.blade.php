@@ -29,7 +29,7 @@
                             <td class="px-6 py-4 text-sm text-gray-700">
                                 {{ \Illuminate\Support\Str::limit($item->title, 40) }}</td>
                             <td class="px-6 py-4 text-sm text-gray-700">
-                                {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
+                                {{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d M Y') }}</td>
                             <td class="px-6 py-4">
                                 <div class="flex justify-center items-center gap-2">
                                     <a href="{{ route('pengaduan.show', $item->uuid) }}"

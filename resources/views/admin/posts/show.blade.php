@@ -32,7 +32,7 @@
                 <!-- Kategori & Tanggal -->
                 <div class="flex flex-wrap gap-4 text-gray-600 mb-6">
                     <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full">{{ $post->kategori }}</span>
-                    <span>{{ \Carbon\Carbon::parse($post->tanggal)->format('d-m-Y') }}</span>
+                    <span>{{ \Carbon\Carbon::parse($post->tanggal)->translatedFormat('d-m-Y') }}</span>
                 </div>
 
                 <!-- Deskripsi -->

@@ -60,12 +60,6 @@
                             </span>
                         </div>
                     </div>
-
-                    <div class="flex items-center">
-                        <input type="checkbox" name="remember" id="remember" class="rounded border-gray-300">
-                        <label for="remember" class="ml-2 text-sm text-gray-600">Ingat saya</label>
-                    </div>
-
                     <button type="submit"
                         class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition">
                         Login

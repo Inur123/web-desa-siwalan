@@ -52,7 +52,7 @@
                 class="{{ Request::routeIs('admin.sktm.*') || Request::routeIs('admin.surat-kehilangan.*') || Request::routeIs('admin.surat-keterangan-domisili.*') ? '' : 'hidden' }} ml-4 mt-1 space-y-1 pl-4 border-l-2 border-gray-700">
                 <a href="{{ route('admin.sktm.index') }}"
                     class="group flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {{ Request::routeIs('admin.sktm.*') ? 'bg-green-600 text-white' : 'text-gray-400 hover:bg-gray-800/50 hover:text-white' }}">
-                    <i class="fas fa-file-certificate w-4"></i>
+                    <i class="fas fa-file w-4"></i>
                     <span>SKTM</span>
                 </a>
                 <a href="{{ route('admin.surat-kehilangan.index') }}"
@@ -63,7 +63,7 @@
                 <a href="{{ route('admin.surat-keterangan-domisili.index') }}"
                     class="group flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {{ Request::routeIs('admin.surat-keterangan-domisili.*') ? 'bg-green-600 text-white' : 'text-gray-400 hover:bg-gray-800/50 hover:text-white' }}">
                     <i class="fas fa-home w-4"></i>
-                    <span>Surat Keterangan Domisili</span>
+                    <span>Surat Domisili</span>
                 </a>
             </div>
         </div>
@@ -83,11 +83,11 @@
             </button>
             <div id="settingSubmenu"
                 class="{{ Request::routeIs('admin.settings.*') ? '' : 'hidden' }} ml-4 mt-1 space-y-1 pl-4 border-l-2 border-blue-700">
-                <a href="{{ route('admin.settings.template-surat.index') }}"
+                {{-- <a href="{{ route('admin.settings.template-surat.index') }}"
                     class="group flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {{ Request::routeIs('admin.settings.template-surat.*') ? 'bg-blue-600 text-white' : 'text-blue-400 hover:bg-gray-800/50 hover:text-white' }}">
                     <i class="fas fa-file-alt w-4"></i>
                     <span>Template Surat</span>
-                </a>
+                </a> --}}
                 <a href="{{ route('admin.settings.fonnte.index') }}"
                     class="group flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {{ Request::routeIs('admin.settings.fonnte.*') ? 'bg-green-600 text-white' : 'text-green-400 hover:bg-gray-800/50 hover:text-white' }}">
                     <i class="fab fa-whatsapp w-4"></i>
