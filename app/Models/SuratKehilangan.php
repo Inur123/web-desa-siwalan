@@ -36,6 +36,7 @@ class SuratKehilangan extends Model
         'ktp',
         'pengantar_rt',
         'status',
+        'alasan_ditolak',
     ];
 
     protected $casts = [

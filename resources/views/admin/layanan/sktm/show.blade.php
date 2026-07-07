@@ -152,17 +152,24 @@
             </div>
 
             @if ($sktm->status === 'baru')
-                <form action="{{ route('admin.sktm.updateStatus', $sktm->uuid) }}" method="POST" class="mt-6">
+                <form action="{{ route('admin.sktm.updateStatus', $sktm->uuid) }}" method="POST" class="mt-6" id="statusForm">
                     @csrf
                     @method('PATCH')
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Ubah Status</label>
-                        <select name="status"
+                        <select name="status" id="statusSelect"
                             class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500">
                             <option value="diterima" {{ $sktm->status === 'diterima' ? 'selected' : '' }}>Diterima</option>
                             <option value="ditolak" {{ $sktm->status === 'ditolak' ? 'selected' : '' }}>Ditolak</option>
                         </select>
+                    </div>
+
+                    <div class="mb-4 hidden" id="alasanWrapper">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Alasan Ditolak <span class="text-red-500">*</span></label>
+                        <textarea name="alasan_ditolak" id="alasanInput" rows="3"
+                            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500"
+                            placeholder="Masukkan alasan penolakan..."></textarea>
                     </div>
 
                     <button type="submit"
@@ -170,6 +177,27 @@
                         <i class="fas fa-save"></i> Update Status
                     </button>
                 </form>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const statusSelect = document.getElementById('statusSelect');
+                        const alasanWrapper = document.getElementById('alasanWrapper');
+                        const alasanInput = document.getElementById('alasanInput');
+
+                        function toggleAlasan() {
+                            if (statusSelect.value === 'ditolak') {
+                                alasanWrapper.classList.remove('hidden');
+                                alasanInput.setAttribute('required', 'required');
+                            } else {
+                                alasanWrapper.classList.add('hidden');
+                                alasanInput.removeAttribute('required');
+                            }
+                        }
+
+                        statusSelect.addEventListener('change', toggleAlasan);
+                        toggleAlasan();
+                    });
+                </script>
             @elseif($sktm->status === 'diterima')
                 <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                     <p class="text-sm text-gray-600 mb-4">
@@ -182,12 +210,16 @@
                     </a>
                 </div>
             @else
-                <div class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
-                    <p class="text-sm text-gray-600">
-                        <i class="fas fa-lock text-gray-400"></i>
-                        Status tidak dapat diubah karena pengajuan sudah <strong>{{ $sktm->status }}</strong>.
-                        Status final tidak dapat diubah kembali.
+                <div class="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p class="text-sm text-red-800 font-semibold mb-2">
+                        <i class="fas fa-times-circle text-red-500"></i>
+                        Pengajuan ini telah <strong>ditolak</strong>.
                     </p>
+                    @if($sktm->alasan_ditolak)
+                        <div class="mt-2 p-3 bg-white border border-red-100 rounded text-sm text-gray-700">
+                            <strong>Alasan Ditolak:</strong> {{ $sktm->alasan_ditolak }}
+                        </div>
+                    @endif
                 </div>
             @endif
         </div>

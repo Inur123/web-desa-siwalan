@@ -36,6 +36,7 @@ class SktmController extends Controller
 
         $validated = $request->validate([
             'status' => 'required|in:diterima,ditolak',
+            'alasan_ditolak' => 'required_if:status,ditolak|nullable|string|max:1000',
         ]);
 
         $sktm->update($validated);
@@ -72,7 +73,7 @@ class SktmController extends Controller
             . "Yth. Bapak/Ibu *{$sktm->nama}*,\n\n"
             . "Mohon maaf, pengajuan SKTM Anda *DITOLAK*.\n\n"
             . "🔑 *Kode Layanan:* *{$kode}*\n"
-            . "Hal ini biasanya karena berkas yang diunggah tidak lengkap atau data belum sesuai.\n"
+            . "• *Alasan Penolakan:* " . ($sktm->alasan_ditolak ?? 'Berkas kurang lengkap atau data belum sesuai.') . "\n\n"
             . "Silakan lengkapi berkas atau hubungi perangkat desa untuk informasi lebih lanjut.\n\n"
             . "Terima kasih.";
     }

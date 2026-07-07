@@ -148,13 +148,17 @@ class SktmController extends Controller
         $pesan .= "📋 *Detail Pengajuan:*\n";
         $pesan .= "• Nama: {$sktm->nama}\n";
         $pesan .= "• NIK: {$sktm->nik}\n";
+        $pesan .= "• No. HP: {$sktm->no_hp}\n";
+        $pesan .= "• Tempat/Tgl Lahir: {$sktm->tempat_lahir}, " . Carbon::parse($sktm->ttl)->translatedFormat('d/m/Y') . "\n";
+        $pesan .= "• Jenis Kelamin: " . ($sktm->jenis_kelamin ?? '-') . "\n";
+        $pesan .= "• Kewarganegaraan: " . ($sktm->kewarganegaraan ?? '-') . "\n";
+        $pesan .= "• Agama: " . ($sktm->agama ?? '-') . "\n";
+        $pesan .= "• Status Perkawinan: " . ($sktm->status_perkawinan ?? '-') . "\n";
+        $pesan .= "• Pendidikan: " . ($sktm->pendidikan ?? '-') . "\n";
+        $pesan .= "• Pekerjaan: " . ($sktm->pekerjaan ?? '-') . "\n";
+        $pesan .= "• Alamat: {$sktm->alamat}\n";
         $pesan .= "• Keperluan: {$sktm->keperluan}\n";
-
-        if ($sktm->nama_anak) {
-            $pesan .= "• Nama Anak: {$sktm->nama_anak}\n";
-        }
-
-        $pesan .= "• Tanggal Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . "\n";
+        $pesan .= "• Tanggal Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . " WIB\n";
         $pesan .= "• Status: *Menunggu Verifikasi*\n\n";
         $pesan .= "⏳ Pengajuan Anda akan segera diproses oleh petugas desa.\n\n";
         $pesan .= "Terima kasih telah menggunakan layanan Desa Siwalan.\n\n";
@@ -175,13 +179,13 @@ class SktmController extends Controller
         $pesan .= "• NIK: {$sktm->nik}\n";
         $pesan .= "• No. HP: {$sktm->no_hp}\n";
         $pesan .= "• Tempat/Tgl Lahir: {$sktm->tempat_lahir}, " . Carbon::parse($sktm->ttl)->translatedFormat('d/m/Y') . "\n";
+        $pesan .= "• Jenis Kelamin: " . ($sktm->jenis_kelamin ?? '-') . "\n";
+        $pesan .= "• Kewarganegaraan: " . ($sktm->kewarganegaraan ?? '-') . "\n";
+        $pesan .= "• Agama: " . ($sktm->agama ?? '-') . "\n";
+        $pesan .= "• Status Perkawinan: " . ($sktm->status_perkawinan ?? '-') . "\n";
+        $pesan .= "• Pendidikan: " . ($sktm->pendidikan ?? '-') . "\n";
+        $pesan .= "• Pekerjaan: " . ($sktm->pekerjaan ?? '-') . "\n";
         $pesan .= "• Alamat: {$sktm->alamat}\n";
-        $pesan .= "• Status Perkawinan: {$sktm->status_perkawinan}\n";
-
-        if ($sktm->nama_anak) {
-            $pesan .= "• Nama Anak: {$sktm->nama_anak}\n";
-        }
-
         $pesan .= "• Keperluan: {$sktm->keperluan}\n";
         $pesan .= "• Waktu Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . " WIB\n\n";
         $pesan .= "📌 Silakan login ke dashboard admin untuk memverifikasi dan memproses pengajuan ini.\n\n";

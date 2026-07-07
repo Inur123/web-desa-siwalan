@@ -111,7 +111,7 @@ Route::post('/layanan/surat-keterangan-domisili/kirim', [GuestSuratDomisiliContr
     ->name('guest.surat-keterangan-domisili.store');
 
 
- Route::get('/cek-status-layanan', [CekStatusLayananController::class, 'index'])
+Route::get('/cek-status-layanan', [CekStatusLayananController::class, 'index'])
     ->name('guest.cek-status-layanan');
 
 Route::post('/cek-status-layanan', [CekStatusLayananController::class, 'check'])

@@ -27,11 +27,10 @@ class SuratKehilanganController extends Controller
     {
         $validated = $request->validate([
             'status' => 'required|in:diterima,ditolak',
+            'alasan_ditolak' => 'required_if:status,ditolak|nullable|string|max:1000',
         ]);
 
-        $suratKehilangan->update([
-            'status' => $validated['status'],
-        ]);
+        $suratKehilangan->update($validated);
 
         $statusText = $validated['status'] === 'diterima' ? 'diterima' : 'ditolak';
 
@@ -58,7 +57,8 @@ class SuratKehilanganController extends Controller
                 $message .= "Silakan datang ke Kantor Desa Siwalan untuk mengambil surat.\n\n";
             } else {
                 $message .= "❌ Mohon maaf, pengajuan Anda ditolak.\n";
-                $message .= "Silakan hubungi Kantor Desa Siwalan untuk informasi lebih lanjut.\n\n";
+                $message .= "• *Alasan Penolakan:* " . ($suratKehilangan->alasan_ditolak ?? 'Berkas kurang lengkap atau data belum sesuai.') . "\n\n";
+                $message .= "Silakan lengkapi berkas atau hubungi Kantor Desa Siwalan untuk informasi lebih lanjut.\n\n";
             }
 
             $message .= "Terima kasih! 🙏";

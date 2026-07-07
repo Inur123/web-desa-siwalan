@@ -135,11 +135,18 @@ class SuratKeteranganDomisiliController extends Controller
         $pesan .= "📋 *Detail Pengajuan:*\n";
         $pesan .= "• Nama: {$suratDomisili->nama}\n";
         $pesan .= "• NIK: {$suratDomisili->nik}\n";
+        $pesan .= "• No. HP: {$suratDomisili->no_hp}\n";
+        $pesan .= "• Tempat/Tgl Lahir: {$suratDomisili->tempat_lahir}, " . Carbon::parse($suratDomisili->ttl)->translatedFormat('d/m/Y') . "\n";
+        $pesan .= "• Jenis Kelamin: " . ($suratDomisili->jenis_kelamin ?? '-') . "\n";
+        $pesan .= "• Kewarganegaraan: " . ($suratDomisili->kewarganegaraan ?? '-') . "\n";
+        $pesan .= "• Agama: " . ($suratDomisili->agama ?? '-') . "\n";
+        $pesan .= "• Pekerjaan: " . ($suratDomisili->pekerjaan ?? '-') . "\n";
+        $pesan .= "• Status Perkawinan: " . ($suratDomisili->status_perkawinan ?? '-') . "\n";
         $pesan .= "• Alamat: {$suratDomisili->alamat}\n";
-        if ($suratDomisili->rt || $suratDomisili->rw) {
-            $pesan .= "• RT/RW: " . ($suratDomisili->rt ?? '-') . "/" . ($suratDomisili->rw ?? '-') . "\n";
-        }
-        $pesan .= "• Tanggal Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . "\n";
+        $pesan .= "• RT/RW: " . ($suratDomisili->rt ?? '-') . "/" . ($suratDomisili->rw ?? '-') . "\n";
+        $pesan .= "• Dukuh: " . ($suratDomisili->dukuh ?? '-') . "\n";
+        $pesan .= "• Tahun Domisili: " . ($suratDomisili->tahun_domisili ?? '-') . "\n";
+        $pesan .= "• Tanggal Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . " WIB\n";
         $pesan .= "• Status: *Menunggu Verifikasi*\n\n";
         $pesan .= "⏳ Pengajuan Anda akan segera diproses oleh petugas desa.\n\n";
         $pesan .= "Terima kasih telah menggunakan layanan Desa Siwalan.\n\n";
@@ -157,13 +164,15 @@ class SuratKeteranganDomisiliController extends Controller
         $pesan .= "• NIK: {$suratDomisili->nik}\n";
         $pesan .= "• No. HP: {$suratDomisili->no_hp}\n";
         $pesan .= "• Tempat/Tgl Lahir: {$suratDomisili->tempat_lahir}, " . Carbon::parse($suratDomisili->ttl)->translatedFormat('d/m/Y') . "\n";
+        $pesan .= "• Jenis Kelamin: " . ($suratDomisili->jenis_kelamin ?? '-') . "\n";
+        $pesan .= "• Kewarganegaraan: " . ($suratDomisili->kewarganegaraan ?? '-') . "\n";
+        $pesan .= "• Agama: " . ($suratDomisili->agama ?? '-') . "\n";
+        $pesan .= "• Pekerjaan: " . ($suratDomisili->pekerjaan ?? '-') . "\n";
+        $pesan .= "• Status Perkawinan: " . ($suratDomisili->status_perkawinan ?? '-') . "\n";
         $pesan .= "• Alamat: {$suratDomisili->alamat}\n";
-        if ($suratDomisili->rt || $suratDomisili->rw) {
-            $pesan .= "• RT/RW: " . ($suratDomisili->rt ?? '-') . "/" . ($suratDomisili->rw ?? '-') . "\n";
-        }
-        if ($suratDomisili->status_perkawinan) {
-            $pesan .= "• Status Perkawinan: {$suratDomisili->status_perkawinan}\n";
-        }
+        $pesan .= "• RT/RW: " . ($suratDomisili->rt ?? '-') . "/" . ($suratDomisili->rw ?? '-') . "\n";
+        $pesan .= "• Dukuh: " . ($suratDomisili->dukuh ?? '-') . "\n";
+        $pesan .= "• Tahun Domisili: " . ($suratDomisili->tahun_domisili ?? '-') . "\n";
         $pesan .= "• Waktu Pengajuan: " . now()->translatedFormat('d/m/Y H:i') . " WIB\n\n";
         $pesan .= "📌 Silakan login ke dashboard admin untuk memverifikasi dan memproses pengajuan ini.\n\n";
         $pesan .= "_Pesan otomatis dari Sistem Desa Siwalan_";
