@@ -94,3 +94,42 @@ npm run dev
 ```
 
 Buka browser Anda di alamat `http://127.0.0.1:8000` untuk melihat website.
+
+---
+
+## 🧪 Pengujian Sistem (Testing)
+
+Proyek ini dilengkapi dengan skenario pengujian unit/fitur lengkap (**Whitebox Testing**) menggunakan SQLite in-memory database (tidak mengganggu database MySQL utama Anda).
+
+### Menjalankan Semua Pengujian sekaligus:
+```bash
+php artisan test
+```
+
+### Menjalankan Pengujian per Berkas / Fitur secara spesifik:
+
+- **Pengujian Fitur Login (Auth)**:
+  ```bash
+  php artisan test tests/Feature/Auth/LoginTest.php
+  ```
+- **Pengujian Layanan SKTM**:
+  ```bash
+  php artisan test tests/Feature/Layanan/SktmTest.php
+  ```
+- **Pengujian Layanan Surat Kehilangan**:
+  ```bash
+  php artisan test tests/Feature/Layanan/SuratKehilanganTest.php
+  ```
+- **Pengujian Layanan Surat Keterangan Domisili**:
+  ```bash
+  php artisan test tests/Feature/Layanan/SuratKeteranganDomisiliTest.php
+  ```
+- **Pengujian Fitur Pengaduan**:
+  ```bash
+  php artisan test tests/Feature/Pengaduan/PengaduanTest.php
+  ```
+- **Pengujian Kelola Berita / Artikel (Posts)**:
+  ```bash
+  php artisan test tests/Feature/Posts/PostsTest.php
+  ```
+
